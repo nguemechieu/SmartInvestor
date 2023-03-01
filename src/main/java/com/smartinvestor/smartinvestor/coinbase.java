@@ -320,9 +320,7 @@ public class coinbase extends Exchange {
                 currentCandleStartedAt, ZoneOffset.UTC));
         long idealGranularity = Math.max(10, secondsIntoCurrentCandle / 200);
         // Get the closest supported granularity to the ideal granularity.
-        assert getCandleDataSupplier(secondsPerCandle, tradePair) != null;
-        assert getCandleDataSupplier(secondsPerCandle, tradePair) != null;
-        assert getCandleDataSupplier(secondsPerCandle, tradePair) != null;
+
         int actualGranularity = getCandleDataSupplier(secondsPerCandle, tradePair).getSupportedGranularities().stream()
                 .min(Comparator.comparingInt(i -> (int) Math.abs(i - idealGranularity)))
                 .orElseThrow(() -> new NoSuchElementException("Supported granularities was empty!"));

@@ -4,184 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="702e63b5-8838-494c-bef7-d74d0f6375c9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/SmartInvestor.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Log.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currencies..csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/currencies.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Algorithm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/BinanceUs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/BinanceUsOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Browser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Bucket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleDataPager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleDataSupplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartContainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartOptions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartToolbar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ChartColors.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Chat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Coin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Coinbase/Coinbase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CryptoCurrency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CryptoCurrencyAlgorithms.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CryptoCurrencyDataProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Currency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyDataProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyPosition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyStyle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DataSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DefaultMoney.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DefaultMoneyFormatter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DelayedSizeChangeListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Discord/Discord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DraggableTab.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ENUM_CHAT_ACTION.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ENUM_EXCHANGE_LIST.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ENUM_LANGUAGES.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ENUM_MARKET_TYPES.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Entities.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Exchange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ExchangeWebSocketClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Extrema.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FXUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FastMoney.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FastMoneyFormatter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FiatCurrency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FiatCurrencyDataProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Fonts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ForgotPassword.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/InProgressCandle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/InProgressCandleData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/InpMoneyManagement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/InstantAxisFormatter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/JsonToCsv.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/KeyboardButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LiveOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LiveOrderBookConsumers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LiveOrdersConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LiveTicker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LiveTickerConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LiveTradesConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Log.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LogOnExceptionThreadFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LoginButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LoginForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MainScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Money.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MoneyAxisFormatter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MoneyFormatter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/News.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/NewsManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Oanda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/OandaOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/OrderBook.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/OrderBookVbox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/PLATFORM.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/PopOver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/PopOverSkin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/RegisterForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/RequestHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ReverseRawTradeDataProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ReversedLinesFileReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/SELECTION_MODE.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/SFileChooser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Screenshot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Side.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/SignUpButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/StableTicksAxis.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/SymmetricPair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TELEGRAM_API_INFOS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TRADE_EVENTS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TRADE_ORDER_TYPE.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TRADE_STATUS.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TelegramApiException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TelegramClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TimeFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ToggleSwitch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ToggleSwitchSkin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Trade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TradeErrors.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TradeExchanges.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TradeMode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TradePair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/UPDATE_MODE.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/WholeNumberFractionalDigitAmount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ZoomDirection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ZoomLevel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/coinbase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/oanda/Candle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/oanda/CandleData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/oanda/CandleDataSupplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/oanda/Oanda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/oanda/OandaException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/7123025_logo_google_g_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Invest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/SmartInvestor.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/app.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/credential/credentials.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/buttonStyles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/chart.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/glyph.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/popover.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/stylesheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/css/toggleswitch.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/currencies.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/font/fontawesome-webfont-5.0.7.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/font/typicons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/screenshot.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/Screen Shot.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/backword1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/bookMarks[1].png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/bookmark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/bookmarks.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/cog-solid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/download.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/downloads.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/exchange.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/folder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/forward1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/history.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/newtab.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/pdf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/pdfConverter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/print-solid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/refresh.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/search-minus-solid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/search-plus-solid.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/search.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/setting.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/symbol.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/user.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/oanda_granularity.csv" afterDir="false" />
+    <list default="true" id="702e63b5-8838-494c-bef7-d74d0f6375c9" name="Changes" comment="git">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Oanda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Oanda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/coinbase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/coinbase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,10 +143,20 @@
       <option name="presentableId" value="Default" />
       <updated>1677340683985</updated>
     </task>
+    <task id="LOCAL-00001" summary="git">
+      <created>1677698253327</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677698253327</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="git" />
+    <option name="LAST_COMMIT_MESSAGE" value="git" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SmartInvestor$App.ic" NAME="App Coverage Results" MODIFIED="1677683198247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

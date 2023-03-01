@@ -44,7 +44,11 @@ public class Oanda extends Exchange {
 
     @Override
     public CompletableFuture<List<Trade>> fetchRecentTradesUntil(String tradePair, Instant stopAt) {
-        return null;
+
+        return
+
+
+                null;
     }
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
@@ -122,9 +126,8 @@ public class Oanda extends Exchange {
                     URI.create(uriStr)
             );
             req.header("Accept", "application/json");
-            String apiKey=
-                    OANDA_API_KEY;
-            req.header("Authorization", "Bearer " + apiKey);
+
+            req.header("Authorization", "Bearer " + OANDA_API_KEY);
             return HttpClient.newHttpClient().sendAsync(
                            req.build(),
                             HttpResponse.BodyHandlers.ofString())
@@ -221,9 +224,8 @@ public class Oanda extends Exchange {
 //            Content-Type: application/json
 
             for (int i = 0; !futureResult.isDone(); i++) {
-                String accountID
-                        = OANDA_ACCOUNT_ID;
-                if (accountID == null) {
+
+                if (OANDA_ACCOUNT_ID == null) {
                     Alert alert = new Alert(Alert.AlertType.ERROR)
                             ;
                     alert.setTitle("Error");
@@ -233,7 +235,7 @@ public class Oanda extends Exchange {
                     return
                             ;
                 }
-                String uriStr = "https://api-fxtrade.oanda.com/v3/accounts/"+accountID+"/trades?";
+                String uriStr = "https://api-fxtrade.oanda.com/v3/accounts/"+OANDA_ACCOUNT_ID+"/trades?";
                 uriStr += "instrument=" + tradePair.toString('_') ;
 
                 if (i != 0) {
@@ -248,7 +250,7 @@ public class Oanda extends Exchange {
                 req.header("Authorization", "Bearer " + Objects.requireNonNullElse(apiKey, ""));
                 req.header("Content-Type", "application/json");
                 req.header("Connection", "keep-alive");
-                req.header("Link", "<https://api-fxtrade.oanda.com/v3/accounts/"+accountID+"/trades?beforeID=6397&instrument="+tradePair.toString('_')+">; rel=\"next\"");
+                req.header("Link", "<https://api-fxtrade.oanda.com/v3/accounts/"+OANDA_ACCOUNT_ID+"/trades?beforeID=6397&instrument="+tradePair.toString('_')+">; rel=\"next\"");
                 req.header("Date", "Wed, 22 Jun 2016 1");
                 req.header("Access-Control-Allow-Origin", "*");
                 req.header("Access-Control-Allow-Methods", "PUT, PATCH, POST, GET, OPTIONS, DELETE");
@@ -332,7 +334,7 @@ public class Oanda extends Exchange {
                             HttpResponse.BodyHandlers.ofString())
                     .thenApply(HttpResponse::body)
                     .thenApply(response -> {
-                        Log.info(String.valueOf(TAG),"coinbase response: " + response);
+                        Log.info(String.valueOf(TAG),"Oanda response: " + response);
                         JsonNode res;
                         try {
                             res = OBJECT_MAPPER.readTree(response);
@@ -356,6 +358,13 @@ public class Oanda extends Exchange {
                         while (candleItr.hasNext()) {
                             currCandle = candleItr.next();
                             long time = Date.from(Instant.parse(currCandle.get("time").asText())).getTime();
+                            out.println(
+                                    "time: " + time + ", price: " + currCandle.get("bid").get("o").asDouble() +
+                                            ", size: " + currCandle.get("bid").get("s").asDouble() +
+                                            ", side: " + currCandle.get("bid").get("side").asText() +
+                                            ", id: " + currCandle.get("id").asLong()
+
+                            );
 
                             if (time < currentCandleStartedAt.getEpochSecond() ||
                                     time>= currentCandleStartedAt.getEpochSecond() +
