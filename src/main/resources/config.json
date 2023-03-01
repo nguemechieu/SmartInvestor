@@ -1,0 +1,10 @@
+{
+  "Database": "db",
+  "user": "root",
+  "password": "root307",
+  "host": "localhost",
+  "dialect": "mysql",
+  "operatorsAliases": false,
+  "logging": false
+
+}
