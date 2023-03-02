@@ -1,5 +1,6 @@
 package com.smartinvestor.smartinvestor;
 
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -15,7 +16,10 @@ import java.util.concurrent.TimeoutException;
 
 public class LoginForm extends Stage {
     GridPane grid = new GridPane();
-    public LoginForm() {
+    public LoginForm(Stage stage) throws IOException, URISyntaxException, InterruptedException, ExecutionException, TimeoutException, SQLException {
+        AnchorPane anchorPane = new AnchorPane();
+        Scene scene = new Scene(anchorPane,1530,780);
+        scene.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("/app.css")).toExternalForm());
 
         grid.setHgap(10);
         grid.setVgap(10);
@@ -40,7 +44,7 @@ public class LoginForm extends Stage {
                                 username.getText(),
                                 password.getText()
                         );
-                    } catch (Exception e) {
+                    } catch (Exception | TelegramApiException e) {
                         throw new RuntimeException(e);
                     }
                 }
@@ -64,9 +68,11 @@ public class LoginForm extends Stage {
                 , 3);
 
         ForgotPassword forgotPassword=new ForgotPassword();
+
         forgotPassword.setOnAction(
                 event -> {   System.out.println("Forgot Password ");
 
+                    close();
 
                     GridPane gridPane=new GridPane();
                     gridPane.setHgap(10);
@@ -88,55 +94,65 @@ public class LoginForm extends Stage {
                                     verifyLogin(
                                             username.getText(),password.getText()
                                     );
-                                } catch (Exception e) {
+                                } catch (Exception | TelegramApiException e) {
                                     throw new RuntimeException(e);
                                 }
                             });
 
                     Button cancelButton=new Button("Cancel");
-                    cancelButton.setOnAction(event1 -> {close();new LoginForm();});
-                    gridPane.add(submitButton, 1, 7);
-                    gridPane.add(cancelButton, 1, 6);
-                    close();
-                    AnchorPane anchorPane=new AnchorPane();
-                    gridPane.setTranslateY(200);
-                    gridPane.setTranslateX(500);
-                    anchorPane.getChildren().add(gridPane);
+                    cancelButton.setOnAction(event1 -> {close();
+                        try {
+                            LoginForm st = new LoginForm(stage);
 
-                    Scene scene = new Scene(anchorPane,1530,780);
-                    scene.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("/app.css")).toExternalForm());
-                    setScene(scene);
+                            st.show();
+                        } catch (IOException | InterruptedException | ExecutionException | TimeoutException |
+                                 SQLException | URISyntaxException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+
+                    gridPane.add(submitButton, 0, 1);
+                    gridPane.add(cancelButton, 2, 1);
+                    gridPane.setTranslateY(0);
+                    gridPane.setTranslateX(0);
+
+
                     setTitle("Forgot Password");
+                    setScene(new Scene(gridPane, 1530, 780));
+                    gridPane.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("/app.css")).toExternalForm());
+
                     show();
 
                 }
         );
 
         grid.add(forgotPassword, 1, 6);
-        grid.setTranslateX(0);
-        grid.setTranslateY(0);
+
         grid.setAlignment(javafx.geometry.Pos.CENTER);
         grid.setHgap(20);
         grid.setVgap(20);
         grid.setPadding(new javafx.geometry.Insets(20, 20, 20, 20));
-        grid.setPrefSize(200, 100);
-        Scene scene = new Scene(grid,1530,780);
+        grid.setPrefSize(500, 200);
+        grid.setTranslateX(500);
+        grid.setTranslateY(200);
+
+        AnchorPane anchorPane0=new AnchorPane(grid);
+         scene = new Scene(anchorPane0,1530,780);
         setTitle("Smart Investor ");
         getIcons().add(new javafx.scene.image.Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/SmartInvestor.png"))));
-        scene.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("/app.css")).toExternalForm());
+        anchorPane0.getStylesheets().add(Objects.requireNonNull(this.getClass().getResource("/app.css")).toExternalForm());
 
         setResizable(true);
         setIconified(true);
         setScene(scene);
 
-        show();
 
 
 
 
     }
 
-    private void verifyLogin( String username, String password) throws Exception {
+    private void verifyLogin( String username, String password) throws Exception, TelegramApiException {
         if (username==null || password==null) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter username and password");

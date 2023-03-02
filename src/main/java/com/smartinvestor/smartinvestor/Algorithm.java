@@ -1,8 +1,6 @@
 package com.smartinvestor.smartinvestor;
 
-/**
- * @author Michael Ennen
- */
+
 public enum Algorithm {
     SHA256,
     SCRYPT,

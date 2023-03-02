@@ -32,7 +32,7 @@ public class DraggableTab extends Tab {
     static {
         markerStage = new Stage();
         markerStage.initStyle(StageStyle.UNDECORATED);
-        Rectangle dummy = new Rectangle(3, 10, Color.web("#555555"));
+        Rectangle dummy = new Rectangle(3, 10, Color.rgb(25,245,9));
         StackPane markerStack = new StackPane();
         markerStack.getChildren().add(dummy);
         markerStage.setScene(new Scene(markerStack));

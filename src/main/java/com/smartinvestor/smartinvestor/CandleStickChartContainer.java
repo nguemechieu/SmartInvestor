@@ -1,9 +1,11 @@
 package com.smartinvestor.smartinvestor;
 
+import java.io.IOException;
 import java.util.Objects;
 
 import javafx.animation.FadeTransition;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -16,7 +18,7 @@ import javafx.util.Duration;
  * duration is selected, this container automatically creates a new {@code CandleStickChart} and visually
  * transitions to it.
  *
- * @author Michael Ennen
+
  */
 public class CandleStickChartContainer extends Region {
     private final VBox candleChartContainer;
@@ -29,11 +31,11 @@ public class CandleStickChartContainer extends Region {
     /**
      * Construct a new {@code CandleStickChartContainer} with liveSyncing mode off.
      */
-    public CandleStickChartContainer(Exchange exchange, TradePair tradePair) {
+    public CandleStickChartContainer(Exchange exchange, TradePair tradePair) throws TelegramApiException, IOException, InterruptedException {
         this(exchange, tradePair, false);
     }
 
-    public CandleStickChartContainer(Exchange exchange, TradePair tradePair, boolean liveSyncing) {
+    public CandleStickChartContainer(Exchange exchange, TradePair tradePair, boolean liveSyncing) throws TelegramApiException, IOException, InterruptedException {
         Objects.requireNonNull(exchange, "exchange must not be null");
         Objects.requireNonNull(tradePair, "tradePair must not be null");
         this.exchange = exchange;
@@ -51,8 +53,12 @@ public class CandleStickChartContainer extends Region {
         AnchorPane.setTopAnchor(toolbarContainer, 10.0);
         AnchorPane.setLeftAnchor(toolbarContainer, 82.0);
         AnchorPane.setRightAnchor(toolbarContainer, 0.0);
-
-        candleChartContainer = new VBox();
+        TelegramClient telegramClient = exchange.getTelegramClient();
+      Label telegramLabel = new Label("Telegram Bot :" +telegramClient.getChannelName());
+      telegramLabel.getStyleClass().add("telegram-label");
+      AnchorPane.setTopAnchor(telegramLabel, 0.0);
+      telegramLabel.setTranslateX(1000);
+        candleChartContainer = new VBox(telegramLabel);
         candleChartContainer.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
         AnchorPane.setTopAnchor(candleChartContainer, 46.0);
         AnchorPane.setLeftAnchor(candleChartContainer, 15.0);

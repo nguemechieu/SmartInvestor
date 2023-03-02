@@ -30,6 +30,7 @@ public class TelegramClient {
 
 
     public static final ArrayList<Chat> ArrayListChat = new ArrayList<>();
+    public static final String API_KEY = String.valueOf(TELEGRAM_API_INFOS.TELEGRAM_API_KEY);
     private static final KeyboardButton[] keyboard = new KeyboardButton[]{new KeyboardButton("1", KeyboardButtonType.BUTTON_TYPE_SINGLE_LINE), new KeyboardButton("2", KeyboardButtonType.BUTTON_TYPE_SINGLE_LINE), new KeyboardButton("3", KeyboardButtonType.BUTTON_TYPE_SINGLE_LINE), new KeyboardButton("4", KeyboardButtonType.BUTTON_TYPE_SINGLE_LINE), new KeyboardButton("5", KeyboardButtonType.BUTTON_TYPE_SINGLE_LINE), new KeyboardButton("6", KeyboardButtonType.BUTTON_TYPE_SINGLE_LINE), new KeyboardButton("7", KeyboardButtonType.BUTTON_TYPE_SINGLE_LINE), new KeyboardButton("8", KeyboardButtonType.BUTTON_TYPE_SINGLE_LINE), new KeyboardButton("9", KeyboardButtonType.BUTTON_TYPE_SINGLE_LINE), new KeyboardButton("0", KeyboardButtonType.BUTTON_TYPE_SINGLE_LINE)};
     public static int offset = 0;
     public static String message = "";
@@ -2298,6 +2299,8 @@ public class TelegramClient {
 
         );
     }
+
+
 
 
     public enum KeyboardButtonType {

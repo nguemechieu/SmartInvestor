@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javafx.util.Pair;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,11 +28,13 @@ public class TradePair extends Pair<Currency, Currency> {
         this.counterCurrency = Currency.of(counterCurrency);
     }
 
-    public static TradePair of(String baseCurrencyCode, String counterCurrencyCode) {
+    @Contract("_, _ -> new")
+    public static @NotNull TradePair of(String baseCurrencyCode, String counterCurrencyCode) {
         return new TradePair(baseCurrencyCode, counterCurrencyCode);
     }
 
-    public static TradePair of(Currency baseCurrency, Currency counterCurrency) {
+    @Contract("_, _ -> new")
+    public static @NotNull TradePair of(Currency baseCurrency, Currency counterCurrency) {
         return new TradePair(baseCurrency, counterCurrency);
     }
 
@@ -68,10 +72,11 @@ public class TradePair extends Pair<Currency, Currency> {
                 if (Currency.ofFiat(split[1]) != Currency.NULL_FIAT_CURRENCY) {
                     return new TradePair(Currency.ofFiat(split[0]), Currency.ofFiat(split[1]));
                 } else if (Currency.ofCrypto(split[1]) != Currency.NULL_CRYPTO_CURRENCY) {
-                    return new TradePair(Currency.ofFiat(split[0]), Currency.ofCrypto(split[1]));
+                    return new TradePair(split[0], split[1]);
                 } else {
                     // TODO throw exception instead?
-                    return TradePair.of(Currency.NULL_FIAT_CURRENCY, Currency.NULL_CRYPTO_CURRENCY);
+
+                    throw new CurrencyNotFoundException(CurrencyType.CRYPTO, split[1]);
                 }
             } else if (pairType.getValue().equals(FiatCurrency.class)) {
                 if (Currency.ofFiat(split[1]) == Currency.NULL_FIAT_CURRENCY) {
@@ -83,7 +88,7 @@ public class TradePair extends Pair<Currency, Currency> {
                 if (Currency.ofCrypto(split[1]) == Currency.NULL_CRYPTO_CURRENCY) {
                     throw new CurrencyNotFoundException(CurrencyType.CRYPTO, split[1]);
                 } else {
-                    return new TradePair(Currency.ofFiat(split[0]), Currency.ofCrypto(split[1]));
+                    return new TradePair(split[0],split[1]);
                 }
             } else {
                 logger.error("bad value for second member of pairType - must be one of CryptoCurrency.class, " +
@@ -100,24 +105,26 @@ public class TradePair extends Pair<Currency, Currency> {
             if (pairType.getValue() == null) {
                 // The counter currency is not specified, so try both (fiat first)
                 if (Currency.ofFiat(split[1]) != Currency.NULL_FIAT_CURRENCY) {
-                    return new TradePair(Currency.ofCrypto(split[0]), Currency.ofFiat(split[1]));
+                    return new TradePair(split[0], split[1]);
                 } else if (Currency.ofCrypto(split[1]) != Currency.NULL_CRYPTO_CURRENCY) {
-                    return new TradePair(Currency.ofCrypto(split[0]), Currency.ofCrypto(split[1]));
+                    return new TradePair(split[0], split[1]);
                 } else {
-                    // TODO throw exception instead?
-                    return TradePair.of(Currency.NULL_CRYPTO_CURRENCY, Currency.NULL_CRYPTO_CURRENCY);
+                    // TODO throw exception instead?;
+                    throw new IllegalArgumentException("bad value for second member of pairType - must be one of " +
+                            "CryptoCurrency.class, FiatCurrency.class, or null but was: " + pairType.getValue());
+
                 }
             } else if (pairType.getValue().equals(FiatCurrency.class)) {
                 if (Currency.ofFiat(split[1]) == Currency.NULL_FIAT_CURRENCY) {
                     throw new CurrencyNotFoundException(CurrencyType.FIAT, split[1]);
                 } else {
-                    return new TradePair(Currency.ofCrypto(split[0]), Currency.ofFiat(split[1]));
+                    return new TradePair(split[0], split[1]);
                 }
             } else if (pairType.getValue().equals(CryptoCurrency.class)) {
                 if (Currency.ofCrypto(split[1]) == Currency.NULL_CRYPTO_CURRENCY) {
                     throw new CurrencyNotFoundException(CurrencyType.CRYPTO, split[1]);
                 } else {
-                    return new TradePair(Currency.ofCrypto(split[0]), Currency.ofCrypto(split[1]));
+                    return new TradePair(split[0], split[1]);
                 }
             } else {
                 logger.error("bad value for second member of pairType - must be one of CryptoCurrency.class, " +

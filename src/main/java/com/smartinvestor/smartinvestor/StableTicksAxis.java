@@ -33,12 +33,7 @@ import javafx.geometry.Dimension2D;
 import javafx.util.Duration;
 import javafx.scene.chart.ValueAxis;
 
-/**
- * A {@code StableTicksAxis} places tick marks at consistent (axis value rather than graphical) locations. This
- * makes the axis major tick marks (the labeled tick marks) have nice, rounded numbers.
- *
- * @author Jason Winnebeck
- */
+
 public class StableTicksAxis extends ValueAxis<Number> {
     /**
      * Possible tick spacing at the 10^1 level. These numbers must be {@literal >= 1 and < 10}.

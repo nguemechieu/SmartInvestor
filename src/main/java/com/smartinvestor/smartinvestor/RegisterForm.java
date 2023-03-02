@@ -64,8 +64,8 @@ public class RegisterForm extends Stage {
                 ;
         varGender.setValue("Male");
 
-        gridPane.add(varGender, 1, 24);
-        gridPane.add(new Label("ID"), 0, 25);
+        gridPane.add(varGender, 2, 26);
+        gridPane.add(new Label("ID"), 0, 26);
         Button varRegister=new Button("Submit");
         varRegister.setOnAction(e -> {
             close();
@@ -118,16 +118,16 @@ public class RegisterForm extends Stage {
 
 
         });
-        gridPane.add(varRegister, 3, 27);
+        gridPane.add(varRegister, 3, 28);
         Button varCancel=new Button("Cancel");
         varCancel.setOnAction(e -> close());
-        gridPane.add(varCancel, 1, 27);
+        gridPane.add(varCancel, 1, 28);
         TextField varID=new TextField(id);
 
         varID.setEditable(false);
         gridPane.add(varID, 0, 26);
         setTitle("Registration ");
-        Scene scene = new Scene(gridPane, 800, 700);
+        Scene scene = new Scene(gridPane, 700, 700);
         scene.getStylesheets().add(Objects.requireNonNull(RegisterForm.class.getResource("/app.css")).toExternalForm());
         setScene(scene);
 

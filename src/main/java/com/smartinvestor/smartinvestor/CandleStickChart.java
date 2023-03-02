@@ -92,8 +92,7 @@ import org.slf4j.LoggerFactory;
  * new candles (as the bounds of the pane were changing while scrolling was happening so "jumps" would occur).
  * Also in order to implement panning and zooming we needed access to all the chart's internal data (and then some)
  * and so the encapsulation of the chart's data by the Chart class was being completely bypassed.
- *
- * @author Michael Ennen
+
  */
 public class CandleStickChart extends Region {
     private final CandleDataPager candleDataPager;
@@ -189,7 +188,9 @@ public class CandleStickChart extends Region {
         extraAxis.setSide(Side.RIGHT);
         xAxis.setForceZeroInRange(false);
         yAxis.setForceZeroInRange(false);
-        xAxis.setTickLabelFormatter(InstantAxisFormatter.of(DateTimeFormatter.ofPattern("H':'mm")));
+        xAxis.setTickLabelFormatter(InstantAxisFormatter.of(DateTimeFormatter.ofPattern(
+                "yyyy-MM-dd HH:mm:ss"
+        )));
         yAxis.setTickLabelFormatter(new MoneyAxisFormatter(tradePair.getCounterCurrency()));
         extraAxis.setTickLabelFormatter(new MoneyAxisFormatter(tradePair.getBaseCurrency()));
         Font axisFont = Font.font(FXUtils.getMonospacedFont(), 14);
@@ -203,7 +204,7 @@ public class CandleStickChart extends Region {
 
         // We want to extend the extra axis (volume) visually so that it encloses the chart area.
         extraAxisExtension = new Line();
-        Paint lineColor = Color.rgb(195, 195, 195);
+        Paint lineColor = Color.rgb(189, 189, 189);
         extraAxisExtension.setFill(lineColor);
         extraAxisExtension.setStroke(lineColor);
         extraAxisExtension.setSmooth(false);
@@ -260,9 +261,9 @@ public class CandleStickChart extends Region {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 double numberOfVisibleWholeCandles = Math.floor(containerWidth.getValue().doubleValue() / candleWidth);
-                chartWidth = (numberOfVisibleWholeCandles * candleWidth) - 60 + (candleWidth / 2);
+                chartWidth = (numberOfVisibleWholeCandles * candleWidth) - 60 +(float) (candleWidth / 2);
                 chartWidth = (Math.floor(containerWidth.getValue().doubleValue() / candleWidth) * candleWidth) - 60 +
-                        (candleWidth / 2);
+                        (float)  (candleWidth / 2);
                 chartHeight = containerHeight.getValue().doubleValue();
                 canvas = new Canvas(chartWidth - 100, chartHeight - 100);
                 StackPane chartStackPane = new StackPane(canvas, loadingIndicatorContainer);
@@ -401,7 +402,9 @@ public class CandleStickChart extends Region {
         // FIXME: Figure out why this is null
         if (extremaForRange == null) {
             logger.error("extremaForRange was null!");
+            return;
         }
+
         final Integer yAxisMax = extremaForRange.getValue().getMax();
         final Integer yAxisMin = extremaForRange.getValue().getMin();
         final double yAxisDelta = yAxisMax - yAxisMin;
@@ -540,7 +543,7 @@ public class CandleStickChart extends Region {
         double halfCandleWidth = candleWidth * 0.5;
         double lastClose = -1;
         for (CandleData candleDatum : candlesToDraw.descendingMap().values()) {
-            // TODO(mike): We could change the sliding window extrema function to map to doubles instead of ints
+            // TODO(noel): We could change the sliding window extrema function to map to doubles instead of ints
             // and use that here instead of iterating over the candle data again.
             if (candleIndex < currZoomLevel.getNumVisibleCandles() + 2) {
                 // We don't want to draw the high/low markers off-screen, so we guard it with the above condition.
@@ -732,12 +735,16 @@ public class CandleStickChart extends Region {
                 // draw low marker to the right of the candle (arrow points to the left)
                 double xPos = ((canvas.getWidth() - (candleIndexOfLowest * candleWidth)) + halfCandleWidth) + 2;
                 graphicsContext.setTextAlign(TextAlignment.LEFT);
-                graphicsContext.fillText("← " + MARKER_FORMAT.format(lowestCandleValue), xPos, lowMarkYPos);
-            } else {
+                graphicsContext.fillText("←-- " + MARKER_FORMAT.format(lowestCandleValue), xPos, lowMarkYPos);
+            }
+
+
+
+            else {
                 // draw low marker to the left of the candle (arrow points to the right)
-                double xPos = ((canvas.getWidth() - (candleIndexOfLowest * candleWidth)) + halfCandleWidth) - 3;
+                double xPos = ((canvas.getWidth() - (candleIndexOfLowest * candleWidth)) + halfCandleWidth) - 2;
                 graphicsContext.setTextAlign(TextAlignment.RIGHT);
-                graphicsContext.fillText(MARKER_FORMAT.format(lowestCandleValue) + " →", xPos, lowMarkYPos);
+                graphicsContext.fillText(MARKER_FORMAT.format(lowestCandleValue) + " --→", xPos, lowMarkYPos);
             }
         }
     }
@@ -871,7 +878,7 @@ public class CandleStickChart extends Region {
         @Override
         public void resize() {
             chartWidth = Math.max(300, Math.floor(containerWidth.getValue().doubleValue() / candleWidth) *
-                    candleWidth - 60 + (candleWidth / 2));
+                    candleWidth - 60 + (float) (candleWidth / 2));
             chartHeight = Math.max(300, containerHeight.getValue().doubleValue());
             canvas.setWidth(chartWidth - 100);
             canvas.setHeight(chartHeight - 100);
@@ -938,6 +945,12 @@ public class CandleStickChart extends Region {
             return new VBox(new Label("Order Book"),new ListView<OrderBook>());
         }
 
+        @Contract(pure = true)
+        @Override
+        public @Nullable TelegramClient getTelegramClient() {
+            return null;
+        }
+
         @Override
         public void run() {
             if (inProgressCandle == null) {
@@ -953,7 +966,7 @@ public class CandleStickChart extends Region {
 
             // Get rid of trades we already know about
             List<Trade> newTrades = liveTrades.stream().filter(trade -> trade.getTimestamp().getEpochSecond() >
-                    inProgressCandle.getCurrentTill()).collect(Collectors.toList());
+                    inProgressCandle.getCurrentTill()).toList();
 
             // Partition the trades between the current in-progress candle and the candle after that (which we may
             // have entered after last update).

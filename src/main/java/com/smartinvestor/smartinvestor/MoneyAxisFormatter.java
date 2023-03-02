@@ -4,9 +4,6 @@ import java.util.Objects;
 
 import javafx.util.StringConverter;
 
-/**
- * @author Michael Ennen
- */
 public class MoneyAxisFormatter extends StringConverter<Number> {
     private final FastMoneyFormatter format;
     private final Currency currency;
@@ -35,7 +32,8 @@ public class MoneyAxisFormatter extends StringConverter<Number> {
 
     @Override
     public Number fromString(String string) {
-        // return format.parse(string).getNumber();
+         //return format.format(
+           //      FastMoney.ofCrypto(Double.parseDouble(string), currency.getCode(), precision));
         return 1;
     }
 }

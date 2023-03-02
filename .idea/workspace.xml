@@ -5,9 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="702e63b5-8838-494c-bef7-d74d0f6375c9" name="Changes" comment="git">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/home.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Oanda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Oanda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/coinbase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/coinbase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Algorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleDataPager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleDataPager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartToolbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartToolbar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ChartColors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ChartColors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Currency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DelayedSizeChangeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DelayedSizeChangeListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DraggableTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DraggableTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Exchange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Exchange.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ExchangeWebSocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ExchangeWebSocketClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LiveTradesConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LiveTradesConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MoneyAxisFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MoneyAxisFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MoneyFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MoneyFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/OrderBookVbox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/OrderBookVbox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/RegisterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/RegisterForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Side.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Side.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/StableTicksAxis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/StableTicksAxis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/SymmetricPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/SymmetricPair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TelegramClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TelegramClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TradePair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TradePair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/home.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677698253327</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="git">
+      <created>1677700885982</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1677700885982</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

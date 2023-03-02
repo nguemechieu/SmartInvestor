@@ -45,8 +45,7 @@ import static com.smartinvestor.smartinvestor.FXUtils.computeTextDimensions;
  * <p>
  * The toolbar buttons are labelled with either text (which is used for the duration buttons,
  * e.g. "6h") or a glyph (e.g. magnifying glasses with a plus/minus for zoom in/out).
- *
- * @author Michael Ennen
+
  */
 public class CandleStickChartToolbar extends Region {
     private final HBox toolbar;

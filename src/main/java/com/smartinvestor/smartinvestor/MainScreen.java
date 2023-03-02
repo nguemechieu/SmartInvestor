@@ -1,5 +1,8 @@
 package com.smartinvestor.smartinvestor;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -16,20 +19,30 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import javafx.util.FXPermission;
 
 import java.io.File;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
+import java.util.stream.Collector;
 
 import static com.smartinvestor.smartinvestor.NewsManager.getNews;
+import static java.lang.System.out;
 
 
 public class MainScreen extends Stage {
 
 
 
-    public MainScreen() throws Exception {
+    public MainScreen() throws Exception, TelegramApiException {
 
         super();
         close();
@@ -57,10 +70,10 @@ public class MainScreen extends Stage {
                 new MenuItem("Print to PDF"),
                 new MenuItem("Exit"));
         fileMenu.getItems().get(0).setOnAction(event -> {
-            System.out.println("New");
+            out.println("New");
         });
         fileMenu.getItems().get(1).setOnAction(event -> {
-            System.out.println("Open");
+            out.println("Open");
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("CSV Files", "*.csv"),
@@ -68,9 +81,9 @@ public class MainScreen extends Stage {
             );
             File file = fileChooser.showOpenDialog(this);
             if (file != null) {
-                System.out.println(file.getAbsolutePath());
+                out.println(file.getAbsolutePath());
             } else {
-                System.out.println("No file selected");
+                out.println("No file selected");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("No file selected");
@@ -79,7 +92,7 @@ public class MainScreen extends Stage {
 
         });
         fileMenu.getItems().get(2).setOnAction(event -> {
-            System.out.println("Save");
+            out.println("Save");
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("CSV Files", "*.csv"),
@@ -87,9 +100,9 @@ public class MainScreen extends Stage {
             );
             File file = fileChooser.showSaveDialog(this);
             if (file != null) {
-                System.out.println(file.getAbsolutePath());
+                out.println(file.getAbsolutePath());
             } else {
-                System.out.println("No file selected");
+                out.println("No file selected");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("No file selected");
@@ -97,7 +110,7 @@ public class MainScreen extends Stage {
             }
         });
         fileMenu.getItems().get(3).setOnAction(event -> {
-            System.out.println("Save As");
+            out.println("Save As");
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("CSV Files", "*.csv"),
@@ -105,17 +118,17 @@ public class MainScreen extends Stage {
             );
             File file = fileChooser.showSaveDialog(this);
             if (file != null) {
-                System.out.println(file.getAbsolutePath());
+                out.println(file.getAbsolutePath());
             } else {
-                System.out.println("No file selected");
+                out.println("No file selected");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("No file selected");
                 alert.showAndWait();
             }
         });
-        fileMenu.getItems().get(4).setOnAction(event -> System.out.println("Print"));
-        fileMenu.getItems().get(5).setOnAction(event -> System.out.println("Exit"));
+        fileMenu.getItems().get(4).setOnAction(event -> out.println("Print"));
+        fileMenu.getItems().get(5).setOnAction(event -> out.println("Exit"));
         fileMenu.getItems().get(6).setOnAction(event -> System.exit(0));
 
 
@@ -143,71 +156,71 @@ public class MainScreen extends Stage {
 
 
         editMenu.getItems().get(0).setOnAction(event -> {
-            System.out.println("Undo");
+            out.println("Undo");
 
         });
         editMenu.getItems().get(1).setOnAction(event -> {
-            System.out.println("Redo");
+            out.println("Redo");
 
         });
         editMenu.getItems().get(2).setOnAction(event -> {
-            System.out.println("Cut");
+            out.println("Cut");
 
 
         });
         editMenu.getItems().get(3).setOnAction(event -> {
-            System.out.println("Copy");
+            out.println("Copy");
 
 
         });
         editMenu.getItems().get(4).setOnAction(event -> {
-            System.out.println("Paste");
+            out.println("Paste");
 
 
         });
         editMenu.getItems().get(5).setOnAction(event -> {
-            System.out.println("Select All");
+            out.println("Select All");
 
 
         });
         editMenu.getItems().get(6).setOnAction(event -> {
-            System.out.println("Delete");
+            out.println("Delete");
 
 
         });
 
         editMenu.getItems().get(7).setOnAction(event -> {
-            System.out.println("Find");
+            out.println("Find");
 
 
         });
         editMenu.getItems().get(8).setOnAction(event -> {
-            System.out.println("Find Next");
+            out.println("Find Next");
 
 
         });
         editMenu.getItems().get(9).setOnAction(event -> {
-            System.out.println("Find Previous");
+            out.println("Find Previous");
 
 
         });
         editMenu.getItems().get(10).setOnAction(event -> {
-            System.out.println("Select All");
+            out.println("Select All");
 
 
         });
         editMenu.getItems().get(11).setOnAction(event -> {
-            System.out.println("Find");
+            out.println("Find");
 
 
         });
         editMenu.getItems().get(12).setOnAction(event -> {
-            System.out.println("Find Next");
+            out.println("Find Next");
 
 
         });
         editMenu.getItems().get(13).setOnAction(event -> {
-            System.out.println("Find Previous");
+            out.println("Find Previous");
 
 
         });
@@ -479,11 +492,11 @@ public class MainScreen extends Stage {
         boolean liveSyncing = true;
 
 
-        TradePair EUR_USD =   TradePair.of(Currency.of("EUR"), Currency.ofFiat("USD")),
+        TradePair EUR_USD =   TradePair.of("EUR", "USD"),
 
-                BTC_USD=    TradePair.of(Currency.of("BTC"), Currency.ofFiat("USD"))
+                BTC_USD=    TradePair.of("BTC", "USD")
 
-                ,XLM_USD = TradePair.of(Currency.ofCrypto("XLM"), Currency.of("BTC"));
+                ,XLM_USD = TradePair.of("XLM", "USD");
       CandleStickChartContainer coinbaseStickChartContainer = new CandleStickChartContainer(
                 new coinbase(
                         "wss://advanced-trade-ws.coinbase.com"
@@ -551,6 +564,7 @@ public class MainScreen extends Stage {
         coinbaseTab.setContent(coinbaseStickChartContainer);
         oandaTab.setContent(oandaCandleStickChartContainer);
         binanceUsTab.setContent(binanceUsCandleStickChartContainer);
+        home.setContent(new VBox(new Label("Home"),getCurrenciesData()));
         tabPane.getTabs().addAll(
                 home,oandaTab,coinbaseTab,binanceUsTab ,
                 portfolioTab, stocksTab,news_tab, browser,
@@ -570,8 +584,10 @@ public class MainScreen extends Stage {
         setTitle("Smart Investor      " + DateFormat.getDateInstance().format(new Date()));
         setResizable(true);
         centerOnScreen();
-        scene.getClass().getResource("/app.css");
         getIcons().add(new javafx.scene.image.Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/SmartInvestor.png"))));
+
+        scene.getStylesheets().add(Objects.requireNonNull(Objects.requireNonNull(this.getClass().getResource("/app.css")).toExternalForm()));
+
         setScene(scene);
     }
     TreeTableView<Currency> getCurrenciesData() throws Exception {
@@ -604,6 +620,76 @@ public class MainScreen extends Stage {
 //                "atl_date": "2013-07-06T00:00:00.000Z",
 //                "roi": null,
 //                "last_updated": "2023-02-28T21:38:58.066Z"
+        ArrayList<Currency> currencies = new ArrayList<>();
+
+        HttpRequest.Builder requestBuilder = HttpRequest.newBuilder();
+        requestBuilder.GET().uri(URI.create("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"));
+        requestBuilder.setHeader("Accept", "application/json");
+        requestBuilder.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36");
+        requestBuilder.setHeader("X-CMC_PRO_API_KEY", "9q3vfhm7l33rus21toc8fndupq76itje");
+        requestBuilder.setHeader("Accept-Language", "en-US,en;q=0.5");
+
+        HttpRequest request = requestBuilder.build();
+        request.uri();
+        HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+
+        out.println(response.body());
+        out.println("Status "+response.statusCode());
+        if (response.statusCode() == 200) {
+            out.println(response.body());
+            out.println("Status "+response.statusCode());
+            out.println(response.body());
+
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+            mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+            mapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true);
+            mapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, false);
+
+            JsonNode root0 = mapper.readTree(response.body());
+
+            for (JsonNode node : root0) {
+                out.println(node.get("id").asText());
+                out.println(node.get("symbol").asText());
+                out.println(node.get("name").asText());
+                out.println(node.get("image").asText());
+                out.println(node.get("current_price").asText());
+                out.println(node.get("market_cap").asText());
+                out.println(node.get("market_cap_rank").asText());
+                out.println(node.get("fully_diluted_valuation").asText());
+                out.println(node.get("total_volume").asText());
+                out.println(node.get("high_24h").asText());
+                out.println(node.get("low_24h").asText());
+                out.println(node.get("price_change_24h").asText());
+                out.println(node.get("price_change_percentage_24h").asText());
+                out.println(node.get("market_cap_change_24h").asText());
+                out.println(node.get("market_cap_change_percentage_24h").asText());
+                out.println(node.get("circulating_supply").asText());
+                out.println(node.get("total_supply").asText());
+                out.println(node.get("max_supply").asText());
+                out.println(node.get("ath").asText());
+                out.println(node.get("ath_change_percentage").asText());
+
+                out.println(node.get("atl").asText());
+                out.println(node.get("atl_change_percentage").asText());
+                out.println(node.get("atl_date").asText());
+                out.println(node.get("roi").asText());
+                out.println(node.get("last_updated").asText());
+                Currency currency=new Currency(node.get("id").asText(), node.get("symbol").asText(), node.get("name").asText(), node.get("image").asText(), node.get("current_price").asText(), node.get("market_cap").asText(), node.get("market_cap_rank").asText(), node.get("fully_diluted_valuation").asText(), node.get("total_volume").asText(),
+
+                        node.get("high_24h").asText(), node.get("low_24h").asText(), node.get("price_change_24h").asText(), node.get("price_change_percentage_24h").asText(), node.get("market_cap_change_24h").asText(), node.get("market_cap_change_percentage_24h").asText(), node.get("circulating_supply").asText(),
+                        node.get("total_supply").asText(), node.get("max_supply").asText(), node.get("ath").asText(), node.get("ath_change_percentage").asText(), node.get("atl").asText(), node.get("atl_change_percentage").asText(), node.get("atl_date").asText(), node.get("roi").asText(), node.get("last_updated").asText());
+               out.println(currency.toString());
+                currencies.add(currency);
+
+
+            }
+            out.println("Currencies "+currencies);
+
+
+
+
 
 
     TreeTableView<Currency> treeTableView =new TreeTableView<>();
@@ -614,17 +700,176 @@ public class MainScreen extends Stage {
     treeTableView.setTranslateX(20);
 
         TreeItem <Currency> root = new TreeItem<>();
+        ObservableList<Currency> currencies0 = FXCollections.observableArrayList();
+        currencies0.addAll(currencies);
+        root.setValue(currencies0.get(0));
+
+            Currency.registerCurrencies(currencies);
+
+
+                root.setExpanded(true);
+        treeTableView.setRoot(root);
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+          TreeTableColumn<Currency,String>  symbolColumn= new TreeTableColumn<>("Symbol");
+          symbolColumn.setPrefWidth(50);
+          symbolColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getSymbol()));
+
+
+          TreeTableColumn<Currency,String>  nameColumn= new TreeTableColumn<>("Name");
+          nameColumn.setPrefWidth(50);
+          nameColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getName()));
+
+          TreeTableColumn<Currency,String>  imageColumn= new TreeTableColumn<>("Image");
+          imageColumn.setPrefWidth(50);
+          imageColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getImage()));
+
+          TreeTableColumn<Currency,String>  currentPriceColumn= new TreeTableColumn<>("Current Price");
+          currentPriceColumn.setPrefWidth(50);
+          currentPriceColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getCurrentPrice()));
+
+          TreeTableColumn<Currency,String>  marketCapColumn= new TreeTableColumn<>("Market Cap");
+          marketCapColumn.setPrefWidth(50);
+          marketCapColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMarketCap()));
+
+          TreeTableColumn<Currency,String>  marketCapRankColumn= new TreeTableColumn<>("Market Cap Rank");
+          marketCapRankColumn.setPrefWidth(50);
+          marketCapRankColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMarketCapRank()));
+
+          TreeTableColumn<Currency,String>  fullyDilutedValuationColumn= new TreeTableColumn<>("Fully Diluted Valuation");
+          fullyDilutedValuationColumn.setPrefWidth(50);
+          fullyDilutedValuationColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getFullyDilutedValuation()));
+
+          TreeTableColumn<Currency,String>  totalVolumeColumn= new TreeTableColumn<>("Total Volume");
+          totalVolumeColumn.setPrefWidth(50);
+          totalVolumeColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getTotalVolume()));
+
+          TreeTableColumn<Currency,String>  high24hColumn= new TreeTableColumn<>("High 24h");
+          high24hColumn.setPrefWidth(50);
+          high24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getHigh24h()));
+
+          TreeTableColumn<Currency,String>  low24hColumn= new TreeTableColumn<>("Low 24h");
+          low24hColumn.setPrefWidth(50);
+          low24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getLow24h()));
+
+          TreeTableColumn<Currency,String>  priceChange24hColumn= new TreeTableColumn<>("Price Change 24h");
+          priceChange24hColumn.setPrefWidth(50);
+
+          priceChange24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getPriceChange24h()));
+
+          TreeTableColumn<Currency,String>  priceChangePercentage24hColumn= new TreeTableColumn<>("Price Change Percentage 24h");
+          priceChangePercentage24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getPriceChangePercentage24h()));
+          priceChangePercentage24hColumn.setPrefWidth(50);
+
+          TreeTableColumn<Currency,String>  marketCapChange24hColumn= new TreeTableColumn<>("Market Cap Change 24h");
+
+          marketCapChange24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMarketCapChange24h()));
+          marketCapChange24hColumn.setPrefWidth(50);
+
+          TreeTableColumn<Currency,String>  marketCapChangePercentage24hColumn= new TreeTableColumn<>("Market Cap Change Percentage 24h");
+          marketCapChangePercentage24hColumn.setPrefWidth(50);
+
+          marketCapChangePercentage24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMarketCapChangePercentage24h()));
+
+
+          TreeTableColumn<Currency,String>  circulatingSupplyColumn= new TreeTableColumn<>("Circulating Supply");
+          circulatingSupplyColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getCirculatingSupply()));
+
+          TreeTableColumn<Currency,String>  totalSupplyColumn= new TreeTableColumn<>("Total Supply");
+          totalSupplyColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getTotalSupply()));
+
+          TreeTableColumn<Currency,String>  maxSupplyColumn= new TreeTableColumn<>("Max Supply");
+          maxSupplyColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMaxSupply()));
+
+          TreeTableColumn<Currency,String>  athColumn= new TreeTableColumn<>("ATH");
+          athColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getAth()));
+
+          TreeTableColumn<Currency,String>  athChangePercentageColumn= new TreeTableColumn<>("ATH Change Percentage");
+          athChangePercentageColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getAthChangePercentage()));
+
+          TreeTableColumn<Currency,String>  atlColumn= new TreeTableColumn<>("ATL");
+          atlColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getAtl()));
+
+          TreeTableColumn<Currency,String>  atlChangePercentageColumn= new TreeTableColumn<>("ATL Change Percentage");
+          atlChangePercentageColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getAtlChangePercentage()));
+
+          TreeTableColumn<Currency,String>  atlDateColumn= new TreeTableColumn<>("ATL Date");
+          atlDateColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getAtlDate()));
+
+          TreeTableColumn<Currency,String>  roiColumn= new TreeTableColumn<>("ROI");
+          roiColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getRoi()));
+
+          TreeTableColumn<Currency,String>  lastUpdatedColumn= new TreeTableColumn<>("Last Updated");
+          lastUpdatedColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getLastUpdated()));
+
+
+
+
+
+
+
+
+
+        treeTableView.getColumns().addAll(
+                symbolColumn,
+                nameColumn,
+                imageColumn,
+                currentPriceColumn,
+                marketCapColumn,
+                marketCapRankColumn,
+                fullyDilutedValuationColumn,
+                totalVolumeColumn,
+                high24hColumn,
+                low24hColumn,
+                priceChange24hColumn,
+                priceChangePercentage24hColumn,
+                marketCapChange24hColumn,
+                marketCapChangePercentage24hColumn,
+                circulatingSupplyColumn,
+                totalSupplyColumn,
+                maxSupplyColumn,
+                athColumn,
+                athChangePercentageColumn,
+                atlColumn,
+                atlChangePercentageColumn,
+                atlDateColumn,
+                roiColumn,
+                lastUpdatedColumn
+
+        );
+
+
+
+
+
+treeTableView.setPrefSize(1000  , 450);
 
 
 return treeTableView;
 
+        }else {
+            out.println(response.body());
+            out.println("Status "+response.statusCode());
+            out.println(response.body());
+            Log.error(response.statusCode(), response.body());
+            return null;
+        }
+
     }
+
 
 
     /**

@@ -2,9 +2,7 @@ package com.smartinvestor.smartinvestor;
 
 import java.util.Objects;
 
-/**
- * @author Michael Ennen
- */
+
 public class CandleData {
     private final double openPrice;
     private final double closePrice;

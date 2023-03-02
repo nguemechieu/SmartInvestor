@@ -64,4 +64,8 @@ public abstract class ExchangeWebSocketClient extends WebSocketClient {
     public Node getOrderBook(TradePair tradepair) {
         return liveTradeConsumers.get(tradepair).getOrderBook();
     }
+
+    public TelegramClient getTelegramClient(TradePair tradepair) {
+        return liveTradeConsumers.get(tradepair).getTelegramClient();
+    }
 }
