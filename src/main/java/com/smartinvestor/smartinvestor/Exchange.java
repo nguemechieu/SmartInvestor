@@ -1,17 +1,9 @@
 package com.smartinvestor.smartinvestor;
 
-import javafx.scene.Node;
-import org.java_websocket.drafts.Draft_6455;
-import org.java_websocket.handshake.ServerHandshake;
-
-import java.io.IOException;
-import java.net.URI;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-
-import static java.lang.System.out;
 
 /**
  * An abstract base class for {@code Exchange} implementations.
@@ -20,54 +12,9 @@ import static java.lang.System.out;
  */
 public abstract class Exchange {
     protected final ExchangeWebSocketClient webSocketClient;
-    private TradePair tradePair;
 
     protected Exchange(ExchangeWebSocketClient webSocketClient) {
         this.webSocketClient = webSocketClient;
-    }
-
-    public Exchange(String url) {
-        this(new ExchangeWebSocketClient(URI.create(url),new Draft_6455()) {
-            @Override
-            public void onOpen(ServerHandshake handshakedata) {
-
-              out.println("Connected");
-
-
-            }
-
-            @Override
-            public void onMessage(String message) {
-                out.println(message);
-
-            }
-
-            @Override
-            public void onClose(int code, String reason, boolean remote) {
-                out.println("Disconnected");
-
-            }
-
-            @Override
-            public void streamLiveTrades(TradePair tradePair, LiveTradesConsumer liveTradesConsumer) {
-
-
-
-            }
-
-            @Override
-            public void stopStreamLiveTrades(TradePair tradePair) {
-
-
-
-
-            }
-
-            @Override
-            public boolean supportsStreamingTrades(TradePair tradePair) {
-                return false;
-            }
-        });
     }
 
     /**
@@ -103,14 +50,5 @@ public abstract class Exchange {
             TradePair tradePair, Instant currentCandleStartedAt, long secondsIntoCurrentCandle, int secondsPerCandle) {
         throw new UnsupportedOperationException("Exchange: " + this + " does not support fetching candle data" +
                 " for in-progress candle");
-    }
-
-    public Node getOrderBook(TradePair tradepair) {
-        return webSocketClient.getOrderBook(tradepair);
-    }
-
-    public TelegramClient getTelegramClient() throws TelegramApiException, IOException, InterruptedException {
-
-        return new TelegramClient(TelegramClient.API_KEY);
     }
 }

@@ -1,10 +1,7 @@
 package com.smartinvestor.smartinvestor;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Michael Ennen

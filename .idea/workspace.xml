@@ -5,38 +5,295 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="702e63b5-8838-494c-bef7-d74d0f6375c9" name="Changes" comment="git">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CandleStickChart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MarketData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MarketDataImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ServiceProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Services.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/area-solid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/auto-trading-solid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/bar-solid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/currency-solid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/histogram-solid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/line-solid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/pie-solid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/-8B2JlFI9HgFcgp0RGJHcPQD2GM.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/-A5v-hTPFRzEXEMXLO7124F8nt0.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/-J7aRUq7vWOBN_6cwMe5fZNvAcs.br.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/04rsIxvUswmsfc-ejOs6kkXxabY.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/0IsYKSwwm5FfLJloF96TVqP7I84.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/0NkXKkaVkOi7zqIYRQQ-JN2ZMRk.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/1hGciYbPE6ALKVPnmrkw4Pko3GI.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/1tCRrEWjnhJiFk6Wnu4Uxbne8Yc.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/2RORvtYMbXMYMdmVBZ9vKtPHL88.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/47Fug8pUBPsj--E-GusVeV588dk.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/4G7D1QV6YyxBiP8DvqOHB1sX1g4.br.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/4L4QdyjTv0HYE2Ig2ol9eYoqxg8.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/4M3FHd83xr3oE3RxmmL20TC-NHw.br.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/4qLYPfN0EmVUH2TIgYLmYcXKYtQ.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/5vFSQCRSrpDcq3eta_XSlrn9ECQ.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/5yVAKe18OXFf_XvuMPJO61GQVsc.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/7-J2RHYGGYSSYur9SUNcAJ6V57w.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/7FnQHVt5IOZSWOk_VJxWgltxaRI.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/7WWO4uX5I4DsHN20fZKU0mmAzmk.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/8LjFgtjRDdQgWzz-6wSRdS14ZvE.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/9g2uGVRiVEp1Z6NEnafRTzu39z4.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/9mM--t8iClqcK4e1MHzNovhHkVA.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/APn8x7aS6SDWhNRMw-wctByQXwU.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/C3Doalpq_K9Y7LeqEmWWP0GY2F8.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/C7TuoP5bfHv-CZlMHZy7yfvI4Fk.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/CMm2G4GK3T9XHTMByeN2QI1OVUs.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/Ci6Xzu7lUfNYtt_LRbzVQ2-kSew.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/CvRAP5h-Tw9XxcbuJ2WVxfcYgOM.br.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/ELqKWpA6KkapLUFbOLS-IQ2zfXc.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/ERVh0n1Tha3X69yWw8418xDDSH4.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/Flag_Feedback.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/Fsa_OI0AplCnVoXGca8ALOo0S0s.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/Gw7eETSwe7GHmKwW1lRqGPQJXRo.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/Gyuq2bqitqDJM0BeAkbKXGlQXNw.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/HCu03H9lunyjG3YuIMpzuEuBA9g.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/HLR5wR-IyRW5pFIFVV3YqNCED0Q.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/H_VmuFPRwWZ4UrVl0mPztnf3z5U.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/I3TpSlUtBYsZd3dfa-XrTR93xkA.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/JGmTj76FhGsk-L6oOi3ert6BeoQ.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/JgKJq6SZzL_NQcDgzoflY1o6Dfo.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/JwYkXMjdB-vgnzJufU14UAt6vNQ.br.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/KC_nX2_tPPyFvVw1RK20Yu1FyDk.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/Kyqdjk4--irryC9zoP58GdorGQk.br.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/MDRc-Z1mCXUAsqPLTTLJAyA9-BQ.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/MjkKTrIX9w2UKVd1W1WV1Gj2zWM.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/N55Tc-oLNOuzZam9OghLsR0GD5U.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/N7tKdYmlODF3joFiKWv51yR3FE4.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/NnFHhz2jL6yzChtIhaB5IIVKY5k.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/ODF.vVPGg42Aene5Ju2s2Xi3og" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP(1).mRja4Q8vNn00WUM9UNrk4QHaGn" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP(2).DArEc23OEsk7eV8yujI_kQHaG1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.1NObxVDqcgeNjCNRb5UeFgHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.1uz5YnereDVTRYhvpOTmnwHaHC" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.3ZHpQgdQSc--9K8EqCFbeQHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.3n8nNHidgk_AZrzKDO52OwHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.3rheCREa8sojwKeibhX0QgHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.3unrVC6at1KRHGZlsnQXvAAAAA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.4jHvb5i9kxt8SUAujSo9TwHaFu" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.7Y2IvKPjBSfD34Mhj2PeUwAAAA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.7pLGi-fG1wgaHTzbMapoegHaG1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.9HdI7JkOgLZ3S4-8Z5hLWAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.C-ca0huWfFoV2Z4L6mbH7wHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.C-rz-OZhCeCxXnUQJYm1tgHaHD" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.D80_xOEfaGQMQ_USqFThXAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.DArEc23OEsk7eV8yujI_kQHaG1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.DU4FrPFhz6rIRMPChJ72IgHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.FKgyR5Fiu9B42osA8jQfWwHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.HsWJrcRM2eE7W-2DTH40TAAAAA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.InhR2c4wYKOMrRXL9NBJKQHaHv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.NBnDTLWz9Y5PfmFS7hkb8gHaG1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.NuYuwicvgELraH-W_bePMAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.P382dZ6ES4uthoCoZRZmfAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.QXFEakyq3eETUJZnnxe0KQHaFj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.Qn-PvY_AXwCQ9zuIFoWKqgHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.RrRrGxQl9BNRhHC6EFEVAAHaIh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.SfktCR6CrqEcadkkUJ5dGAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.SjqYOZVEHf50eU-frt71CgHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.TDks_jbpKBO6_LymEdwOWwHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.UGGoqsS4dtwyrm1RjD2YXAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.V8ih4PFbNaqULur7NttBugHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.VXVdnn95Y5Eyl-qUhcMP-wHaFj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.VrO_JtSLs8c8J8RRbObHsAAAAA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.X231jqhE624J3AVIwfFk3wHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.Ylf30G7TMtYTsgxzQiNfzgHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.fBYefZcFY5CdTXQX-6WpdQHaJy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.gOm1YcE39wfmlvGRIeBj5gHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.gRwQ5llolcnnFU4agKAt1gAAAA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.gu4EhI1f3-XELxqkU4_hdAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.hnmZstgr8gvdYtIOsw90oQHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.jFQwfH2wyTsjj40WlkO4aQAAAA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.jLPnHPHGwpGvA-QKWj0OVgHaG8" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.l7r3K2p_SiqoPBwxSoMzKgHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.mRja4Q8vNn00WUM9UNrk4QHaGn" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.nP9ERt39_HL7m6T_nQg2XQHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.ntAzvZ62StKVs0mXPwavugHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.nx4gAVpdByfSimLDNMD2PgHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.o0-Il5vzF6HWWhc0cNvSbwHaFj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.pdIhqt5rPQRII17-CO3FegHaFj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.qe3XQyxb3ewyDqxRjPLPIAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.rxxRjL2RDqlfCC_TsD18KQHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.tVO-P6_Ic0YTud40kPaYxAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.u1TCkyRlcLby05splVeHJgAAAA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.uK0j_fqEvebPAbOdrMaEdAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.v3eUGiHg6lLEpRv4sBpmlAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.wygzMRnazFPiSwZsVNJhYAHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.yT7jzkM5Qe4p55c4MhdJCAAAAA" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.yo3Ob0-kIF-uF0YSmp-fnAHaHF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.yvA7k5O0zV7kuVF693VaZQHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.z0s8GhcWPYUjR26WCi_S5wHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/OIP.zZRnM7iZ4BD2gu3BSFnCAQHaHa" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/PZ76sazggYnBmuarZgy-_W550X8.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/PzsnQvP9t7K_BrYLEvov_HPCzPs.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/Q5BJPjebyYN5QiqznkcMQmLrF9U.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/QPM4mBvd3TupfQNRIgBL_-FEbTk.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/QRLFpKcuPwjEs9AWNP9QUwpofz8.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/R.0c0ac4736dce12c93b795f32ba323f91" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/RvhnrewkhfjdMcZA5Mt6FqPjFHY.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/RviFhZHJ-ocDiaMEnLfV5GrvRrs.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/S8XR_dbRuqkRVTq9K4RFKZuAZqo.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/UYtUYDcn1oZlFG-YfBPz59zejYI.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/V9Lbi4rGakA-OjwcLcoh5jr1zfY.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/V_fBQ_iVmAgE_Ta_T-6BNXc0ZY4.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/VcOn1gseEaghMo9u-ztejQ4sniQ.br.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/WRGhsWGnkf3ko69VafMSpLBwgbk.br.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/XJ8OmILbNhm0zU9tdkuGYeXVPRQ.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/XhuulIbo88eLoQSXNdexXtHhacY.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/Y1oYqK9xVryBIcUqqAvPZRsLqfU.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/_Ael2K4S2eED5lUgb1LMokI5D0A.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/authorize.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/b4Jy0kwhnsWcsDQyuzAEsN7RmhQ.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/bKX-oHAzCCa0QfkWylUGsx-1EKY.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/bSmUb4SdiINJy0O6_CJPQxImT6o.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/cNbseG2vlUH2ubvgjbDJtgTzQPo.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/embsdilsIHlL3Z9aj8bnbGheUyQ.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/f21jlSMmEDN43OaavcdaB-7Phq0.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/fR5Lloge8ADOj_fhhjhY_5ZehaU.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/fRSNKQanUHk53F1a1Bi8UA71Qt4.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/fdVZU4ttbw8NDRm6H3I5BW3_vCo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/gIoKmeHMJx2_2nng59mskaI57bg.br.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/gKwIRAF4fg7noG1zyeUz8x3Jdhc.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/hEqFKjQayMY_lHvLB2LmW1vKiD4.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/hSGwh2JO2tj-l608vqtbJ2446IY.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/hx1FP91l4PKrDhCLfXHf3ouMwSg.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/img_178177.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/k7RyCSUIXFac0p5n3vksTzcT4VM.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/kBH4DSEA84cgV7IKw7_Bwvm2NpI.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/kCUpM11UAm_OYWzgyOYxVXT4Ij4.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/kUXEzkU3Wypda2rqWsLEEOdocY4.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/kiGH9ukZK6Q4hvtDtwwVc1yvueg.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/mEnA5fBf4mUGnGBL55wbFSniDys.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/n1U5gwBiwMo7s-fWOh2kSe3Kils.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/n21aGRCN5EKHB3qObygw029dyNU.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/n_C4vBfAV3O9RfkGjfduaZoxjAs.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/pc-WYZEv5CNVTx98hYs9-br9UYE.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/q64PXB7qMsIkoW54Co-eN7_sufI.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/qTpI1gigkZ6v_5ln49J5RF1_bGs.br.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/rROQiwasHbxd46nTGULFymuJ0I8.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/rRq_wl5pFjuswQTmZNb3ETdg7dQ.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/redotAnimation@3.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/s5G3mfD5rgY8Cts-ZD-QT7lNe8o.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/sXBuN34gVodVFZ4ibhvLSgv15Ks.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/saved_resource(1).html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/saved_resource.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(1)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(10)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(11)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(12)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(13)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(14)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(15)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(16)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(17)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(18)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(19)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(2)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(20)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(21)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(22)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(23)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(24)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(25)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(26)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(27)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(28)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(29)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(3)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(30)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(31)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(32)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(33)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(34)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(35)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(36)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(4)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(5)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(6)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(7)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(8)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/th(9)" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/tz1ly9gS_LTEwwaXb5ptkhncp_c.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/ulJ3ckR0YcGpvIX6xhO4prJhEQQ.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/upt7Ri3AVBCCNSuZMRK4rMBqXWQ.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/vAfj4Nft998c8vIIXTo0Aqc96uA.br.js.download" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/yQzL_mYdyQfAEdw601f8HBLgQqA.br.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/ytiieusXgM2K8bLkEDP-AS1ePds.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/z7pWos7Y3kyke569sNYwm89fv94.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/scatter-solid_files/zYRmeqAEd4Z0yDRz8nuL0syHMEI.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/spline-solid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/split-solid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img/volume-chart-solid.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Algorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/BinanceUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/BinanceUs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleDataPager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleDataPager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleDataSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleDataSupplier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartContainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartOptions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartToolbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartToolbar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ChartColors.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ChartColors.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CryptoCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CryptoCurrency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CryptoCurrencyAlgorithms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CryptoCurrencyAlgorithms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CryptoCurrencyDataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CryptoCurrencyDataProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Currency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyDataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyDataProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyStyle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyStyle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CurrencyType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DefaultMoney.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DefaultMoney.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DefaultMoneyFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DefaultMoneyFormatter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DelayedSizeChangeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DelayedSizeChangeListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DraggableTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/DraggableTab.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Exchange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Exchange.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ExchangeWebSocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ExchangeWebSocketClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Extrema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Extrema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FXUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FXUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FastMoney.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FastMoney.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FastMoneyFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FastMoneyFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FiatCurrency.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FiatCurrency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FiatCurrencyDataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/FiatCurrencyDataProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/InProgressCandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/InProgressCandle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/InProgressCandleData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/InProgressCandleData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/InstantAxisFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/InstantAxisFormatter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LiveTradesConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LiveTradesConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LogOnExceptionThreadFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/LogOnExceptionThreadFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Money.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Money.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MoneyAxisFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MoneyAxisFormatter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MoneyFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/MoneyFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Oanda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Oanda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/OrderBookVbox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/OrderBookVbox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/PopOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/PopOver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/PopOverSkin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/PopOverSkin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/RegisterForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/RegisterForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ReverseRawTradeDataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ReverseRawTradeDataProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ReversedLinesFileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ReversedLinesFileReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Side.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Side.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/StableTicksAxis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/StableTicksAxis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/SymmetricPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/SymmetricPair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TelegramClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TelegramClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ToggleSwitch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ToggleSwitch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ToggleSwitchSkin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ToggleSwitchSkin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Trade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/Trade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TradePair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/TradePair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/css/stylesheet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/home.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/WholeNumberFractionalDigitAmount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/WholeNumberFractionalDigitAmount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ZoomDirection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ZoomDirection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ZoomLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/ZoomLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/coinbase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/coinbase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +303,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Record" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -75,19 +332,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/nguem/OneDrive/Documents/GitHub/SmartInvestor/src/main/java/com/smartinvestor/smartinvestor&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.47816092&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/nguem/OneDrive/Documents/GitHub/SmartInvestor/src/main/java/com/smartinvestor/smartinvestor",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.47816092",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.smartinvestor.smartinvestor" />
@@ -186,13 +443,31 @@
       <option name="project" value="LOCAL" />
       <updated>1677700885982</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="git">
+      <created>1677731744326</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677731744327</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="git" />
     <option name="LAST_COMMIT_MESSAGE" value="git" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/smartinvestor/smartinvestor/CandleStickChartToolbar.java</url>
+          <line>195</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SmartInvestor$App.ic" NAME="App Coverage Results" MODIFIED="1677683198247" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -1,5 +1,10 @@
 package com.smartinvestor.smartinvestor;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.BooleanPropertyBase;
 import javafx.beans.property.IntegerProperty;
@@ -22,11 +27,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import static com.smartinvestor.smartinvestor.FXUtils.computeTextDimensions;
 
@@ -45,9 +47,14 @@ import static com.smartinvestor.smartinvestor.FXUtils.computeTextDimensions;
  * <p>
  * The toolbar buttons are labelled with either text (which is used for the duration buttons,
  * e.g. "6h") or a glyph (e.g. magnifying glasses with a plus/minus for zoom in/out).
+ *
 
  */
 public class CandleStickChartToolbar extends Region {
+    ThreadLocal<CandleStickChart> chart = new ThreadLocal<>();
+
+    private static final int BUTTON_WIDTH = 100;
+    private static final int BUTTON_HEIGHT = 30;
     private final HBox toolbar;
     private final PopOver optionsPopOver;
     private MouseExitedPopOverFilter mouseExitedPopOverFilter;
@@ -74,6 +81,7 @@ public class CandleStickChartToolbar extends Region {
                     Separator minuteHourSeparator = new Separator();
                     minuteHourSeparator.setOpacity(0);
                     toolbarNodes.add(minuteHourSeparator);
+
                 }
                 toolbarNodes.add(new ToolbarButton((granularity / 3600) + "h", granularity));
             } else if (granularity < 604800) {
@@ -160,8 +168,7 @@ public class CandleStickChartToolbar extends Region {
     void setActiveToolbarButton(IntegerProperty secondsPerCandle) {
         Objects.requireNonNull(secondsPerCandle);
         for (Node childNode : toolbar.getChildren()) {
-            if (childNode instanceof ToolbarButton) {
-                ToolbarButton tool = (ToolbarButton) childNode;
+            if (childNode instanceof ToolbarButton tool) {
                 tool.setActive(secondsPerCandle.get() == tool.duration);
             }
         }
@@ -170,26 +177,88 @@ public class CandleStickChartToolbar extends Region {
     void registerEventHandlers(CandleStickChart candleStickChart, IntegerProperty secondsPerCandle) {
         Objects.requireNonNull(secondsPerCandle);
         for (Node childNode : toolbar.getChildren()) {
-            if (childNode instanceof ToolbarButton) {
-                ToolbarButton tool = (ToolbarButton) childNode;
+            if (childNode instanceof ToolbarButton tool) {
                 if (tool.duration != -1) {
                     tool.setOnAction(event -> secondsPerCandle.setValue(tool.duration));
                 } else if (tool.tool != null && tool.tool.isZoomFunction()) {
                     tool.setOnAction(event -> candleStickChart.changeZoom(
                             tool.tool.getZoomDirection()));
+                }else if (tool.tool!= null && tool.tool.isPrintFunction()) {
+
+                    tool.setOnAction(event -> candleStickChart.print());
                 }
+
+                else if (tool.tool!= null && tool.tool.isScreenshot()) {
+                    tool.setOnAction(event -> candleStickChart.takeScreenshot());
+                }
+                else if (tool.tool!= null && tool.tool.isLine()) {
+                    tool.setOnAction(event -> candleStickChart.drawLine());
+                }
+
+                else if (tool.tool!= null && tool.tool.isScatter()) {
+                    tool.setOnAction(event -> candleStickChart.drawScatter());
+                }
+                else if (tool.tool!= null && tool.tool.isBar()) {
+                    tool.setOnAction(event -> candleStickChart.drawBar());
+                }
+                else if (tool.tool!= null && tool.tool.isPie()) {
+                    tool.setOnAction(event -> candleStickChart.drawPie());
+                }
+
+                else if (tool.tool!= null && tool.tool.isHistogram()) {
+                    tool.setOnAction(event -> candleStickChart.drawHistogram());
+                }
+
+
+                else if (tool.tool!= null && tool.tool.isPDF()) {
+                    tool.setOnAction(event -> candleStickChart.printPDF());
+                }
+                else if (tool.tool!= null && tool.tool.isSpline()) {
+                    tool.setOnAction(event -> candleStickChart.drawSpline());
+                }
+                else if (tool.tool!= null && tool.tool.isAreaChart()) {
+                    tool.setOnAction(event -> candleStickChart.drawAreaChart());
+                }
+                else if (tool.tool!= null && tool.tool.isBaseCurrency()) {
+                    tool.setOnAction(event -> candleStickChart.getBaseCurrency());
+                }else if (tool.tool!= null && tool.tool.isCounterCurrency()) {
+                    tool.setOnAction(event -> candleStickChart.getCounterCurrency());
+                }
+                else if (tool.tool!= null && tool.tool.isVolumeChart()) {
+                    tool.setOnAction(event -> candleStickChart.drawVolumeChart());
+                }
+
+
+
+
             }
         }
     }
 
-    void setChartOptions(CandleStickChartOptions chartOptions) {
+    void setChartOptions(@NotNull CandleStickChartOptions chartOptions) {
         optionsPopOver.setContentNode(chartOptions.getOptionsPane());
     }
 
     enum Tool {
         ZOOM_IN("/img/search-plus-solid.png"),
         ZOOM_OUT("/img/search-minus-solid.png"),
-        PRINT("/img/print-solid.png"),
+        LINE("/img/line-solid.png"),
+        SPLINE("/img/spline-solid.png"),
+        PIE("/img/pie-solid.png"),
+
+
+
+        HISTOGRAM("/img/histogram-solid.png"), Scatter("/img/scatter-solid.png"), SPLIT("/img/split-solid.png"),
+        SCREENSHOT("/img/Screen Shot.png"),
+        COUNTER_CURRENCY(
+                "/img/currency-solid.png"
+        ),
+        BASE_CURRENCY(
+                "/img/currency-solid.png"
+        ),
+        PRINT("/img/print-solid.png"), BAR("/img/bar-solid.png"), AREA_CHART("/img/area-solid.png"),
+        VOLUME_CHART("/img/volume-chart-solid.png"),
+        PDF("/img/pdf.png"),
         OPTIONS("/img/cog-solid.png");
 
         private final String img;
@@ -208,6 +277,64 @@ public class CandleStickChartToolbar extends Region {
             }
 
             return this == ZOOM_IN ? ZoomDirection.IN : ZoomDirection.OUT;
+        }
+
+        public boolean isPrintFunction() {
+            return this == PRINT;
+        }
+
+
+
+
+        public boolean isLine() {
+            return this == LINE;
+        }
+        public boolean isSpline() {
+            return this == SPLINE;
+        }
+
+        public boolean isPie() {
+            return this == PIE;
+        }
+
+        public boolean isScreenshot() {
+            return this == SCREENSHOT;
+        }
+
+        public boolean isPDF() {
+            return this == PDF;
+        }
+
+
+        public boolean isBar() {
+            return this == BAR;
+        }
+
+
+
+        public boolean isHistogram() {
+            return this == HISTOGRAM;
+        }
+
+        public boolean isScatter() {
+            return this == Scatter;
+        }
+        public boolean isSplit() {
+            return this == SPLIT;
+        }
+        public boolean isCounterCurrency() {
+            return this == COUNTER_CURRENCY;
+        }
+        public boolean isBaseCurrency() {
+            return this == BASE_CURRENCY;
+        }
+
+        public boolean isAreaChart() {
+            return this == AREA_CHART;
+        }
+
+        public boolean isVolumeChart() {
+            return this == VOLUME_CHART;
         }
     }
 
@@ -258,7 +385,7 @@ public class CandleStickChartToolbar extends Region {
         }
 
         @Override
-        public void handle(MouseEvent event) {
+        public void handle(@NotNull MouseEvent event) {
             // TODO Maybe we should add a small buffer space to the popover, like 10%
             if (!(event.getScreenX() <= optionsPopOver.getX() + optionsPopOver.getWidth()
                     && event.getScreenX() >= optionsPopOver.getX()
@@ -296,7 +423,7 @@ public class CandleStickChartToolbar extends Region {
             this.duration = duration;
             setText(textLabel == null ? "" : textLabel);
             if (img != null) {
-                graphicLabel = new ImageView(new Image(ToolbarButton.class.getResourceAsStream(img)));
+                graphicLabel = new ImageView(new Image(Objects.requireNonNull(ToolbarButton.class.getResourceAsStream(img))));
                 setGraphic(graphicLabel);
             } else {
                 graphicLabel = null;
@@ -318,8 +445,9 @@ public class CandleStickChartToolbar extends Region {
                 return ToolbarButton.this;
             }
 
+            @Contract(pure = true)
             @Override
-            public String getName() {
+            public @NotNull String getName() {
                 return "active";
             }
         };

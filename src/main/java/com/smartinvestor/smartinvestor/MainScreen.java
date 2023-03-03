@@ -3,14 +3,14 @@ package com.smartinvestor.smartinvestor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.application.Platform;
+import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -19,24 +19,26 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import javafx.util.FXPermission;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
-import java.util.stream.Collector;
+import java.util.concurrent.ExecutionException;
+
+import java.util.concurrent.TimeoutException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static com.smartinvestor.smartinvestor.NewsManager.getNews;
 import static java.lang.System.out;
-
 
 public class MainScreen extends Stage {
 
@@ -463,8 +465,9 @@ public class MainScreen extends Stage {
         previousColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper((String.valueOf(param.getValue().getValue().previous))));
 
         root.setValue(
-                news.get(0)
+                news.get(4)
         );
+
         root.setExpanded(true);
         root.getChildren().setAll(news);
         //noinspection unchecked
@@ -502,7 +505,7 @@ public class MainScreen extends Stage {
                         "wss://advanced-trade-ws.coinbase.com"
                 ),
                  BTC_USD, liveSyncing);
-        Oanda oanda=       new Oanda("https://api.oanda.com/v3/instrument/BTCUSD");
+        Oanda oanda=       new Oanda("https://api.oanda.com/v3/instrument/"+EUR_USD);
 //
 //
 //        GET	/v3/accounts
@@ -590,242 +593,120 @@ public class MainScreen extends Stage {
 
         setScene(scene);
     }
-    TreeTableView<Currency> getCurrenciesData() throws Exception {
-
-
-        //
-//        "id": "bitcoin",
-//                "symbol": "btc",
-//                "name": "Bitcoin",
-//                "image": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
-//                "current_price": 23147,
-//                "market_cap": 447608917862,
-//                "market_cap_rank": 1,
-//                "fully_diluted_valuation": 486923970804,
-//                "total_volume": 24865914317,
-//                "high_24h": 23552,
-//                "low_24h": 23154,
-//                "price_change_24h": -262.0034461846444,
-//                "price_change_percentage_24h": -1.11923,
-//                "market_cap_change_24h": -2790454422.5164795,
-//                "market_cap_change_percentage_24h": -0.61955,
-//                "circulating_supply": 19304425,
-//                "total_supply": 21000000,
-//                "max_supply": 21000000,
-//                "ath": 69045,
-//                "ath_change_percentage": -66.28606,
-//                "ath_date": "2021-11-10T14:24:11.849Z",
-//                "atl": 67.81,
-//                "atl_change_percentage": 34228.35233,
-//                "atl_date": "2013-07-06T00:00:00.000Z",
-//                "roi": null,
-//                "last_updated": "2023-02-28T21:38:58.066Z"
-        ArrayList<Currency> currencies = new ArrayList<>();
-
-        HttpRequest.Builder requestBuilder = HttpRequest.newBuilder();
-        requestBuilder.GET().uri(URI.create("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"));
-        requestBuilder.setHeader("Accept", "application/json");
-        requestBuilder.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36");
-        requestBuilder.setHeader("X-CMC_PRO_API_KEY", "9q3vfhm7l33rus21toc8fndupq76itje");
-        requestBuilder.setHeader("Accept-Language", "en-US,en;q=0.5");
-
-        HttpRequest request = requestBuilder.build();
-        request.uri();
-        HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-
-        out.println(response.body());
-        out.println("Status "+response.statusCode());
-        if (response.statusCode() == 200) {
-            out.println(response.body());
-            out.println("Status "+response.statusCode());
-            out.println(response.body());
-
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-            mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
-            mapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true);
-            mapper.configure(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES, false);
-
-            JsonNode root0 = mapper.readTree(response.body());
-
-            for (JsonNode node : root0) {
-                out.println(node.get("id").asText());
-                out.println(node.get("symbol").asText());
-                out.println(node.get("name").asText());
-                out.println(node.get("image").asText());
-                out.println(node.get("current_price").asText());
-                out.println(node.get("market_cap").asText());
-                out.println(node.get("market_cap_rank").asText());
-                out.println(node.get("fully_diluted_valuation").asText());
-                out.println(node.get("total_volume").asText());
-                out.println(node.get("high_24h").asText());
-                out.println(node.get("low_24h").asText());
-                out.println(node.get("price_change_24h").asText());
-                out.println(node.get("price_change_percentage_24h").asText());
-                out.println(node.get("market_cap_change_24h").asText());
-                out.println(node.get("market_cap_change_percentage_24h").asText());
-                out.println(node.get("circulating_supply").asText());
-                out.println(node.get("total_supply").asText());
-                out.println(node.get("max_supply").asText());
-                out.println(node.get("ath").asText());
-                out.println(node.get("ath_change_percentage").asText());
-
-                out.println(node.get("atl").asText());
-                out.println(node.get("atl_change_percentage").asText());
-                out.println(node.get("atl_date").asText());
-                out.println(node.get("roi").asText());
-                out.println(node.get("last_updated").asText());
-                Currency currency=new Currency(node.get("id").asText(), node.get("symbol").asText(), node.get("name").asText(), node.get("image").asText(), node.get("current_price").asText(), node.get("market_cap").asText(), node.get("market_cap_rank").asText(), node.get("fully_diluted_valuation").asText(), node.get("total_volume").asText(),
-
-                        node.get("high_24h").asText(), node.get("low_24h").asText(), node.get("price_change_24h").asText(), node.get("price_change_percentage_24h").asText(), node.get("market_cap_change_24h").asText(), node.get("market_cap_change_percentage_24h").asText(), node.get("circulating_supply").asText(),
-                        node.get("total_supply").asText(), node.get("max_supply").asText(), node.get("ath").asText(), node.get("ath_change_percentage").asText(), node.get("atl").asText(), node.get("atl_change_percentage").asText(), node.get("atl_date").asText(), node.get("roi").asText(), node.get("last_updated").asText());
-               out.println(currency.toString());
-                currencies.add(currency);
-
-
-            }
-            out.println("Currencies "+currencies);
-
-
-
-
-
-
-    TreeTableView<Currency> treeTableView =new TreeTableView<>();
-//
+    TreeTableView<MarketData> getCurrenciesData() throws ExecutionException, InterruptedException, TimeoutException, IOException {
+    TreeTableView<MarketData> treeTableView =new TreeTableView<>();
     treeTableView.setPadding(new Insets(20, 20, 20, 20));
     treeTableView.setPrefSize(1500, 450);
     treeTableView.setTranslateY(50);
     treeTableView.setTranslateX(20);
-
-        TreeItem <Currency> root = new TreeItem<>();
-        ObservableList<Currency> currencies0 = FXCollections.observableArrayList();
-        currencies0.addAll(currencies);
-        root.setValue(currencies0.get(0));
-
-            Currency.registerCurrencies(currencies);
-
-
-                root.setExpanded(true);
-        treeTableView.setRoot(root);
+    treeTableView.setBackground(
+            new javafx.scene.layout.Background(
+                    new javafx.scene.layout.BackgroundFill(
+                            javafx.scene.paint.Color.rgb(42, 189, 189, 1),
+                            new javafx.scene.layout.CornerRadii(10),
+                            Insets.EMPTY
+                    )
+            )
+    );
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-          TreeTableColumn<Currency,String>  symbolColumn= new TreeTableColumn<>("Symbol");
+          TreeTableColumn<MarketData,String>  symbolColumn= new TreeTableColumn<>("Symbol");
           symbolColumn.setPrefWidth(50);
           symbolColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getSymbol()));
 
 
-          TreeTableColumn<Currency,String>  nameColumn= new TreeTableColumn<>("Name");
+          TreeTableColumn<MarketData,String>  nameColumn= new TreeTableColumn<>("Name");
           nameColumn.setPrefWidth(50);
           nameColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getName()));
 
-          TreeTableColumn<Currency,String>  imageColumn= new TreeTableColumn<>("Image");
+          TreeTableColumn<MarketData,String>  imageColumn= new TreeTableColumn<>("Image");
           imageColumn.setPrefWidth(50);
           imageColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getImage()));
 
-          TreeTableColumn<Currency,String>  currentPriceColumn= new TreeTableColumn<>("Current Price");
+          TreeTableColumn<MarketData,String>  currentPriceColumn= new TreeTableColumn<>("Current Price");
           currentPriceColumn.setPrefWidth(50);
           currentPriceColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getCurrentPrice()));
 
-          TreeTableColumn<Currency,String>  marketCapColumn= new TreeTableColumn<>("Market Cap");
+          TreeTableColumn<MarketData,String>  marketCapColumn= new TreeTableColumn<>("Market Cap");
           marketCapColumn.setPrefWidth(50);
           marketCapColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMarketCap()));
 
-          TreeTableColumn<Currency,String>  marketCapRankColumn= new TreeTableColumn<>("Market Cap Rank");
+          TreeTableColumn<MarketData,String>  marketCapRankColumn= new TreeTableColumn<>("Market Cap Rank");
           marketCapRankColumn.setPrefWidth(50);
           marketCapRankColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMarketCapRank()));
 
-          TreeTableColumn<Currency,String>  fullyDilutedValuationColumn= new TreeTableColumn<>("Fully Diluted Valuation");
+          TreeTableColumn<MarketData,String>  fullyDilutedValuationColumn= new TreeTableColumn<>("Fully Diluted Valuation");
           fullyDilutedValuationColumn.setPrefWidth(50);
           fullyDilutedValuationColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getFullyDilutedValuation()));
 
-          TreeTableColumn<Currency,String>  totalVolumeColumn= new TreeTableColumn<>("Total Volume");
+          TreeTableColumn<MarketData,String>  totalVolumeColumn= new TreeTableColumn<>("Total Volume");
           totalVolumeColumn.setPrefWidth(50);
           totalVolumeColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getTotalVolume()));
 
-          TreeTableColumn<Currency,String>  high24hColumn= new TreeTableColumn<>("High 24h");
+          TreeTableColumn<MarketData,String>  high24hColumn= new TreeTableColumn<>("High 24h");
           high24hColumn.setPrefWidth(50);
           high24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getHigh24h()));
 
-          TreeTableColumn<Currency,String>  low24hColumn= new TreeTableColumn<>("Low 24h");
+          TreeTableColumn<MarketData,String>  low24hColumn= new TreeTableColumn<>("Low 24h");
           low24hColumn.setPrefWidth(50);
           low24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getLow24h()));
 
-          TreeTableColumn<Currency,String>  priceChange24hColumn= new TreeTableColumn<>("Price Change 24h");
+          TreeTableColumn<MarketData,String>  priceChange24hColumn= new TreeTableColumn<>("Price Change 24h");
           priceChange24hColumn.setPrefWidth(50);
 
           priceChange24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getPriceChange24h()));
 
-          TreeTableColumn<Currency,String>  priceChangePercentage24hColumn= new TreeTableColumn<>("Price Change Percentage 24h");
+          TreeTableColumn<MarketData,String>  priceChangePercentage24hColumn= new TreeTableColumn<>("Price Change Percentage 24h");
           priceChangePercentage24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getPriceChangePercentage24h()));
           priceChangePercentage24hColumn.setPrefWidth(50);
 
-          TreeTableColumn<Currency,String>  marketCapChange24hColumn= new TreeTableColumn<>("Market Cap Change 24h");
+          TreeTableColumn<MarketData,String>  marketCapChange24hColumn= new TreeTableColumn<>("Market Cap Change 24h");
 
           marketCapChange24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMarketCapChange24h()));
           marketCapChange24hColumn.setPrefWidth(50);
 
-          TreeTableColumn<Currency,String>  marketCapChangePercentage24hColumn= new TreeTableColumn<>("Market Cap Change Percentage 24h");
+          TreeTableColumn<MarketData,String>  marketCapChangePercentage24hColumn= new TreeTableColumn<>("Market Cap Change Percentage 24h");
           marketCapChangePercentage24hColumn.setPrefWidth(50);
 
           marketCapChangePercentage24hColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMarketCapChangePercentage24h()));
 
 
-          TreeTableColumn<Currency,String>  circulatingSupplyColumn= new TreeTableColumn<>("Circulating Supply");
+          TreeTableColumn<MarketData,String>  circulatingSupplyColumn= new TreeTableColumn<>("Circulating Supply");
           circulatingSupplyColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getCirculatingSupply()));
 
-          TreeTableColumn<Currency,String>  totalSupplyColumn= new TreeTableColumn<>("Total Supply");
+          TreeTableColumn<MarketData,String>  totalSupplyColumn= new TreeTableColumn<>("Total Supply");
           totalSupplyColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getTotalSupply()));
 
-          TreeTableColumn<Currency,String>  maxSupplyColumn= new TreeTableColumn<>("Max Supply");
+          TreeTableColumn<MarketData,String>  maxSupplyColumn= new TreeTableColumn<>("Max Supply");
           maxSupplyColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getMaxSupply()));
 
-          TreeTableColumn<Currency,String>  athColumn= new TreeTableColumn<>("ATH");
+          TreeTableColumn<MarketData,String>  athColumn= new TreeTableColumn<>("ATH");
           athColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getAth()));
 
-          TreeTableColumn<Currency,String>  athChangePercentageColumn= new TreeTableColumn<>("ATH Change Percentage");
-          athChangePercentageColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getAthChangePercentage()));
 
-          TreeTableColumn<Currency,String>  atlColumn= new TreeTableColumn<>("ATL");
+          TreeTableColumn<MarketData,String>  atlColumn= new TreeTableColumn<>("ATL");
           atlColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getAtl()));
 
-          TreeTableColumn<Currency,String>  atlChangePercentageColumn= new TreeTableColumn<>("ATL Change Percentage");
+          TreeTableColumn<MarketData,String>  atlChangePercentageColumn= new TreeTableColumn<>("ATL Change Percentage");
           atlChangePercentageColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getAtlChangePercentage()));
 
-          TreeTableColumn<Currency,String>  atlDateColumn= new TreeTableColumn<>("ATL Date");
+          TreeTableColumn<MarketData,String>  atlDateColumn= new TreeTableColumn<>("ATL Date");
           atlDateColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getAtlDate()));
 
-          TreeTableColumn<Currency,String>  roiColumn= new TreeTableColumn<>("ROI");
+          TreeTableColumn<MarketData,String>  roiColumn= new TreeTableColumn<>("ROI");
           roiColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getRoi()));
 
-          TreeTableColumn<Currency,String>  lastUpdatedColumn= new TreeTableColumn<>("Last Updated");
+          TreeTableColumn<MarketData,String>  lastUpdatedColumn= new TreeTableColumn<>("Last Updated");
           lastUpdatedColumn.setCellValueFactory(param -> new ReadOnlyStringWrapper(param.getValue().getValue().getLastUpdated()));
 
 
+        TreeTableColumn<MarketData,String> idColumn=new TreeTableColumn<>("ID");
+        idColumn.setPrefWidth(50);
 
-
-
-
-
-
-
-        treeTableView.getColumns().addAll(
+        treeTableView.getColumns().addAll(nameColumn,
                 symbolColumn,
-                nameColumn,
+
                 imageColumn,
                 currentPriceColumn,
                 marketCapColumn,
@@ -840,18 +721,24 @@ public class MainScreen extends Stage {
                 marketCapChangePercentage24hColumn,
                 circulatingSupplyColumn,
                 totalSupplyColumn,
-                maxSupplyColumn,
-                athColumn,
-                athChangePercentageColumn,
                 atlColumn,
                 atlChangePercentageColumn,
-                atlDateColumn,
                 roiColumn,
                 lastUpdatedColumn
 
         );
 
 
+        ObservableList<MarketData>currencies = FXCollections.observableArrayList();
+        currencies.addAll(getCurrencies());
+
+
+        RecursiveTreeItem<MarketData> root=
+                new RecursiveTreeItem<>(currencies, RecursiveTreeObject::getChildren);
+
+        root.setValue(currencies.get(6));
+        root.setExpanded(true);
+        treeTableView.setRoot(root);
 
 
 
@@ -860,16 +747,71 @@ treeTableView.setPrefSize(1000  , 450);
 
 return treeTableView;
 
-        }else {
-            out.println(response.body());
-            out.println("Status "+response.statusCode());
-            out.println(response.body());
-            Log.error(response.statusCode(), response.body());
-            return null;
-        }
+
 
     }
 
+    private @NotNull ArrayList<MarketData> getCurrencies() throws ExecutionException, InterruptedException, TimeoutException, IOException {
+        HttpRequest.Builder builder = HttpRequest.newBuilder();
+        builder.uri(URI.create("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"));
+        builder.header("Content-Type", "application/json");
+        builder.header("Accept", "application/json");
+        builder.header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36");
+        HttpRequest request = builder.build();
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        String body = response.body();
+        if (response.statusCode() == 200) {
+
+
+        ArrayList<MarketData> currencies = new ArrayList<>();
+
+
+                  try {
+                      out.println(body);
+
+                      ObjectMapper mapper = new ObjectMapper();
+                      mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+                      mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+                      mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+
+
+                      JsonNode marketData = mapper.readTree(body);
+
+                      for (JsonNode market : marketData) {
+
+                          MarketData dat = new MarketData(
+                                  market.get("id").asText(), market.get("symbol").asText(), market.get("name").asText(),
+
+                                  market.get("image").asText(), market.get("current_price").asText(),
+                                  market.get("market_cap").asText(), market.get("market_cap_rank").asText(),
+                                  market.get("fully_diluted_valuation").asText(), market.get("total_volume").asText(),
+                                  market.get("high_24h").asText(), market.get("low_24h").asText(),
+                                  market.get("price_change_24h").asText(), market.get("price_change_percentage_24h").asText(),
+                                  market.get("market_cap_change_24h").asText(), market.get("market_cap_change_percentage_24h").asText(),
+                                  market.get("circulating_supply").asText(), market.get("total_supply").asText(),
+                                  market.get("max_supply").asText(), market.get("ath").asText(),
+                                  market.get("atl").asText(), market.get("atl_change_percentage").asText(), market.get("atl_date").asText(),
+                                  market.get("roi").asText(), market.get("last_updated").asText()
+                                  );
+
+                          currencies.add(dat);
+
+                      }
+                      out.println(currencies);
+
+
+
+                  } catch (Exception e) {
+                      e.printStackTrace();
+                  }
+
+return currencies;}else {
+            Logger.getLogger(ModuleLayer.Controller.class.getName()).log(Level.SEVERE, null, response);
+            return new ArrayList<>();
+        }
+
+    }
 
 
     /**

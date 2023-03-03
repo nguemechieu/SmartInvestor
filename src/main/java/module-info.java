@@ -1,5 +1,6 @@
 module com.smartinvestor.smartinvestor {
     uses com.smartinvestor.smartinvestor.CurrencyDataProvider;
+    uses com.smartinvestor.smartinvestor.ServiceProvider;
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -10,6 +11,8 @@ module com.smartinvestor.smartinvestor {
     requires java.logging;
     requires java.sql;
     requires java.desktop;
+    requires java.sql.rowset;
+
 
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
@@ -32,7 +35,6 @@ module com.smartinvestor.smartinvestor {
     requires jdk.jsobject;
     requires com.fasterxml.jackson.datatype.jsr310;
     requires jdk.hotspot.agent;
-
 
     opens com.smartinvestor.smartinvestor to javafx.fxml;
     exports com.smartinvestor.smartinvestor;

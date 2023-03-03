@@ -33,7 +33,12 @@ import javafx.geometry.Dimension2D;
 import javafx.util.Duration;
 import javafx.scene.chart.ValueAxis;
 
-
+/**
+ * A {@code StableTicksAxis} places tick marks at consistent (axis value rather than graphical) locations. This
+ * makes the axis major tick marks (the labeled tick marks) have nice, rounded numbers.
+ *
+ * @author Jason Winnebeck
+ */
 public class StableTicksAxis extends ValueAxis<Number> {
     /**
      * Possible tick spacing at the 10^1 level. These numbers must be {@literal >= 1 and < 10}.
@@ -78,6 +83,7 @@ public class StableTicksAxis extends ValueAxis<Number> {
     private final BooleanProperty forceZeroInRange = new SimpleBooleanProperty(true);
 
     private double labelSize = -1;
+    private final Object tickUnit=5;
 
     public StableTicksAxis() {
     }
@@ -384,31 +390,25 @@ public class StableTicksAxis extends ValueAxis<Number> {
         return labelSize;
     }
 
-    private static final class Range {
-        public final double low;
-        public final double high;
-        public final double tickSpacing;
-        public final double scale;
+    public Object getTickUnit() {
 
-        private Range(double low, double high, double tickSpacing, double scale) {
-            this.low = low;
-            this.high = high;
-            this.tickSpacing = tickSpacing;
-            this.scale = scale;
-        }
+        return tickUnit;
+    }
+
+    private record Range(double low, double high, double tickSpacing, double scale) {
 
         public double getDelta() {
-            return high - low;
-        }
+                return high - low;
+            }
 
-        @Override
-        public String toString() {
-            return "Range{" +
-                    "low=" + low +
-                    ", high=" + high +
-                    ", tickSpacing=" + tickSpacing +
-                    ", scale=" + scale +
-                    '}';
+            @Override
+            public String toString() {
+                return "Range{" +
+                        "low=" + low +
+                        ", high=" + high +
+                        ", tickSpacing=" + tickSpacing +
+                        ", scale=" + scale +
+                        '}';
+            }
         }
-    }
 }

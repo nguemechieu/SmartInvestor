@@ -16,8 +16,7 @@ public class RegisterForm extends Stage {
             UUID.randomUUID().toString();
     public RegisterForm() throws SQLException {
         super();
-
-        System.out.println("RegisterForm");
+      System.out.println("RegisterForm");
         DataSource db = new DataSource();
         GridPane gridPane=new GridPane();
         gridPane.setHgap(10);

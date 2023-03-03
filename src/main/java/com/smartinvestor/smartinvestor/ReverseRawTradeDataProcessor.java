@@ -3,8 +3,13 @@ package com.smartinvestor.smartinvestor;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeSet;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
@@ -12,7 +17,7 @@ import java.util.stream.Collectors;
 import javafx.beans.property.SimpleIntegerProperty;
 
 
-public class ReverseRawTradeDataProcessor extends CandleDataSupplier {
+public abstract  class ReverseRawTradeDataProcessor extends CandleDataSupplier {
     private final ReversedLinesFileReader fileReader;
     private int start;
 
@@ -116,49 +121,48 @@ public class ReverseRawTradeDataProcessor extends CandleDataSupplier {
                 CandleData::getOpenTime)).collect(Collectors.toList()));
     }
 
-    @Override
-    public CompletableFuture<Optional<InProgressCandleData>> fetchCandleDataForInProgressCandle(TradePair tradePair, Instant currentCandleStartedAt, long secondsIntoCurrentCandle, int secondsPerCandle) {
-
-
-        return
-              null;}
-
-    @Override
-    public CompletableFuture<List<com.smartinvestor.smartinvestor.Trade>> fetchRecentTradesUntil(TradePair tradePair0, Instant stopAt) {
-
-        return null;
-    }
-
-
     /**
      * Represents one line of the raw trade data. We use doubles because the results don't need to be
      * *exact* (i.e. small rounding errors are fine), and we want to favor speed.
-     *
-     * @param timestamp 1315922016,5.800000000000,1.000000000000
      */
-        private record Trade(int timestamp, double price, double amount) {
+    private static class Trade {
+        // 1315922016,5.800000000000,1.000000000000
+        private final int timestamp;
+        private final double price;
+        private final double amount;
+
+        Trade(int timestamp, double price, double amount) {
+            this.timestamp = timestamp;
+            this.price = price;
+            this.amount = amount;
+        }
 
         @Override
-            public boolean equals(Object object) {
-                if (object == this) {
-                    return true;
-                }
-
-                if (object == null || object.getClass() != getClass()) {
-                    return false;
-                }
-
-                Trade other = (Trade) object;
-
-                return Objects.equals(timestamp, other.timestamp) &&
-                        Objects.equals(price, other.price) &&
-                        Objects.equals(amount, other.amount);
-            }
-
-
-            @Override
-            public String toString() {
-                return String.format("Trade [timestamp = %d, price = %f, amount = %f]", timestamp, price, amount);
-            }
+        public int hashCode() {
+            return Objects.hash(timestamp, price, amount);
         }
+
+        @Override
+        public boolean equals(Object object) {
+            if (object == this) {
+                return true;
+            }
+
+            if (object == null || object.getClass() != getClass()) {
+                return false;
+            }
+
+            Trade other = (Trade) object;
+
+            return Objects.equals(timestamp, other.timestamp) &&
+                    Objects.equals(price, other.price) &&
+                    Objects.equals(amount, other.amount);
+        }
+
+
+        @Override
+        public String toString() {
+            return String.format("Trade [timestamp = %d, price = %f, amount = %f]", timestamp, price, amount);
+        }
+    }
 }

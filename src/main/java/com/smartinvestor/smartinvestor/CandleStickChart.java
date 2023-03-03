@@ -1,20 +1,22 @@
 package com.smartinvestor.smartinvestor;
 
-import static com.smartinvestor.smartinvestor.CandleStickChartUtils.*;
-import static com.smartinvestor.smartinvestor.ChartColors.*;
+import static com.smartinvestor.smartinvestor.CandleStickChartUtils.getXAxisFormatterForRange;
+import static com.smartinvestor.smartinvestor.CandleStickChartUtils.putExtremaForRemainingElements;
+import static com.smartinvestor.smartinvestor.CandleStickChartUtils.putSlidingWindowExtrema;
+import static com.smartinvestor.smartinvestor.ChartColors.AXIS_TICK_LABEL_COLOR;
+import static com.smartinvestor.smartinvestor.ChartColors.BEAR_CANDLE_BORDER_COLOR;
+import static com.smartinvestor.smartinvestor.ChartColors.BEAR_CANDLE_FILL_COLOR;
+import static com.smartinvestor.smartinvestor.ChartColors.BULL_CANDLE_BORDER_COLOR;
+import static com.smartinvestor.smartinvestor.ChartColors.BULL_CANDLE_FILL_COLOR;
+import static com.smartinvestor.smartinvestor.ChartColors.PLACE_HOLDER_BORDER_COLOR;
+import static com.smartinvestor.smartinvestor.ChartColors.PLACE_HOLDER_FILL_COLOR;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.NavigableMap;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,29 +27,34 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import com.sun.javafx.stage.EmbeddedWindow;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableNumberValue;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.geometry.VPos;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.chart.Axis;
+import javafx.scene.chart.*;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -58,9 +65,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontSmoothingType;
 import javafx.scene.text.TextAlignment;
 
+import javafx.stage.Stage;
 import javafx.util.Pair;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -92,6 +98,7 @@ import org.slf4j.LoggerFactory;
  * new candles (as the bounds of the pane were changing while scrolling was happening so "jumps" would occur).
  * Also in order to implement panning and zooming we needed access to all the chart's internal data (and then some)
  * and so the encapsulation of the chart's data by the Chart class was being completely bypassed.
+ *
 
  */
 public class CandleStickChart extends Region {
@@ -135,6 +142,8 @@ public class CandleStickChart extends Region {
 
     private static final DecimalFormat MARKER_FORMAT = new DecimalFormat("#.00");
     private static final Logger logger = LoggerFactory.getLogger(CandleStickChart.class);
+     String baseCurrency;
+     String counterCurrency;
 
     /**
      * Creates a new {@code CandleStickChart}. This constructor is package-private because it should only
@@ -154,6 +163,11 @@ public class CandleStickChart extends Region {
     CandleStickChart(Exchange exchange, CandleDataSupplier candleDataSupplier, TradePair tradePair,
                      boolean liveSyncing, int secondsPerCandle, ObservableNumberValue containerWidth,
                      ObservableNumberValue containerHeight) {
+        Thread.currentThread().setName("CandleStickChart");
+        Thread.setDefaultUncaughtExceptionHandler(
+                (t, e) -> logger.error("Uncaught exception in thread \"" + t.getName() + "\"", e)
+        );
+
         Objects.requireNonNull(exchange);
         Objects.requireNonNull(candleDataSupplier);
         Objects.requireNonNull(tradePair);
@@ -189,7 +203,8 @@ public class CandleStickChart extends Region {
         xAxis.setForceZeroInRange(false);
         yAxis.setForceZeroInRange(false);
         xAxis.setTickLabelFormatter(InstantAxisFormatter.of(DateTimeFormatter.ofPattern(
-                "yyyy-MM-dd HH:mm:ss"
+
+                "yyyy-MM-dd HH:mm:ss.SSS"
         )));
         yAxis.setTickLabelFormatter(new MoneyAxisFormatter(tradePair.getCounterCurrency()));
         extraAxis.setTickLabelFormatter(new MoneyAxisFormatter(tradePair.getBaseCurrency()));
@@ -204,7 +219,7 @@ public class CandleStickChart extends Region {
 
         // We want to extend the extra axis (volume) visually so that it encloses the chart area.
         extraAxisExtension = new Line();
-        Paint lineColor = Color.rgb(189, 189, 189);
+        Paint lineColor = Color.rgb(135, 135, 195);
         extraAxisExtension.setFill(lineColor);
         extraAxisExtension.setStroke(lineColor);
         extraAxisExtension.setSmooth(false);
@@ -261,9 +276,9 @@ public class CandleStickChart extends Region {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 double numberOfVisibleWholeCandles = Math.floor(containerWidth.getValue().doubleValue() / candleWidth);
-                chartWidth = (numberOfVisibleWholeCandles * candleWidth) - 60 +(float) (candleWidth / 2);
+                chartWidth = (numberOfVisibleWholeCandles * candleWidth) - 60 + (float) (candleWidth / 2);
                 chartWidth = (Math.floor(containerWidth.getValue().doubleValue() / candleWidth) * candleWidth) - 60 +
-                        (float)  (candleWidth / 2);
+                        (float)    (candleWidth / 2);
                 chartHeight = containerHeight.getValue().doubleValue();
                 canvas = new Canvas(chartWidth - 100, chartHeight - 100);
                 StackPane chartStackPane = new StackPane(canvas, loadingIndicatorContainer);
@@ -402,9 +417,9 @@ public class CandleStickChart extends Region {
         // FIXME: Figure out why this is null
         if (extremaForRange == null) {
             logger.error("extremaForRange was null!");
-            return;
+            logger.error("extremaForRange: " + new TreeMap<>(currZoomLevel.getExtremaForCandleRangeMap()));
         }
-
+        assert extremaForRange != null;
         final Integer yAxisMax = extremaForRange.getValue().getMax();
         final Integer yAxisMin = extremaForRange.getValue().getMin();
         final double yAxisDelta = yAxisMax - yAxisMin;
@@ -543,7 +558,7 @@ public class CandleStickChart extends Region {
         double halfCandleWidth = candleWidth * 0.5;
         double lastClose = -1;
         for (CandleData candleDatum : candlesToDraw.descendingMap().values()) {
-            // TODO(noel): We could change the sliding window extrema function to map to doubles instead of ints
+            // TODO(mike): We could change the sliding window extrema function to map to doubles instead of ints
             // and use that here instead of iterating over the candle data again.
             if (candleIndex < currZoomLevel.getNumVisibleCandles() + 2) {
                 // We don't want to draw the high/low markers off-screen, so we guard it with the above condition.
@@ -619,7 +634,7 @@ public class CandleStickChart extends Region {
                 graphicsContext.setStroke(candleBorderColor);
                 graphicsContext.setLineWidth(2);
                 graphicsContext.stroke();
-                graphicsContext.beginPath(); // TODO(mike): Delete this line?
+                //graphicsContext.beginPath(); // TODO(mike): Delete this line?
 
                 // Draw high line (skip draw if the open (or close) is the same as the high.
                 boolean drawHighLine = true;
@@ -735,16 +750,12 @@ public class CandleStickChart extends Region {
                 // draw low marker to the right of the candle (arrow points to the left)
                 double xPos = ((canvas.getWidth() - (candleIndexOfLowest * candleWidth)) + halfCandleWidth) + 2;
                 graphicsContext.setTextAlign(TextAlignment.LEFT);
-                graphicsContext.fillText("←-- " + MARKER_FORMAT.format(lowestCandleValue), xPos, lowMarkYPos);
-            }
-
-
-
-            else {
+                graphicsContext.fillText("← " + MARKER_FORMAT.format(lowestCandleValue), xPos, lowMarkYPos);
+            } else {
                 // draw low marker to the left of the candle (arrow points to the right)
-                double xPos = ((canvas.getWidth() - (candleIndexOfLowest * candleWidth)) + halfCandleWidth) - 2;
+                double xPos = ((canvas.getWidth() - (candleIndexOfLowest * candleWidth)) + halfCandleWidth) - 3;
                 graphicsContext.setTextAlign(TextAlignment.RIGHT);
-                graphicsContext.fillText(MARKER_FORMAT.format(lowestCandleValue) + " --→", xPos, lowMarkYPos);
+                graphicsContext.fillText(MARKER_FORMAT.format(lowestCandleValue) + " →", xPos, lowMarkYPos);
             }
         }
     }
@@ -869,6 +880,194 @@ public class CandleStickChart extends Region {
         return chartHeight;
     }
 
+    public void takeScreenshot() {
+
+      Screenshot.capture(new File("CandleStickChart.png"));
+
+    }
+
+    public void save() {
+        takeScreenshot();
+    }
+
+    public void printPDF() {
+        System.out.println("Printing PDF");
+    }
+
+
+
+    public void drawLine() {
+
+        LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
+        lineChart.setAnimated(false);
+        lineChart.setCreateSymbols(true);
+        lineChart.setAnimated(true);
+        lineChart.setAxisSortingPolicy(LineChart.SortingPolicy.X_AXIS);
+        VBox.setVgrow(lineChart, Priority.ALWAYS);
+        VBox.setVgrow(yAxis, Priority.ALWAYS);
+
+
+
+    }
+
+    public void showSettings() {
+
+        VBox settingsBox = new VBox(new Label("Settings"));
+        settingsBox.setAlignment(Pos.CENTER);
+        settingsBox.setSpacing(10);
+        settingsBox.getChildren().add(new ProgressIndicator());
+
+    }
+
+    public void print() {
+        takeScreenshot();
+        System.out.println("Printing PDF");
+    }
+
+    public void drawBar() {
+        BarChart<Number, Number> barChart = new BarChart<>(xAxis, yAxis);
+        barChart.setAnimated(true);
+
+
+
+        VBox.setVgrow(barChart, Priority.ALWAYS);
+
+    }
+
+    public void drawPie() {
+        PieChart
+                pieChart = new PieChart();
+
+        pieChart.setClockwise(true);
+        ObservableList<PieChart.Data> data0
+                = FXCollections.observableArrayList(
+                        new PieChart.Data("A", 100),
+                        new PieChart.Data("B", 100),
+                        new PieChart.Data("C", 100),
+                        new PieChart.Data("D", 100),
+                        new PieChart.Data("E", 100),
+                        new PieChart.Data("F", 100),
+                        new PieChart.Data("G", 100),
+                        new PieChart.Data("H", 100),
+                        new PieChart.Data("I", 100),
+                        new PieChart.Data("J", 100),
+                        new PieChart.Data("K", 100),
+                        new PieChart.Data("L", 100),
+                        new PieChart.Data("M", 100),
+                        new PieChart.Data("N",100));
+        pieChart.setData(data0);
+        pieChart.setAnimated(true);
+        VBox.setVgrow(pieChart, Priority.ALWAYS);
+    }
+
+    public void drawScatter() {
+        LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
+        lineChart.setAnimated(false);
+        lineChart.setCreateSymbols(false);
+        lineChart.setAnimated(false);
+        lineChart.setAxisSortingPolicy(LineChart.SortingPolicy.X_AXIS);
+        VBox.setVgrow(lineChart, Priority.ALWAYS);
+
+    }
+
+    public void drawArea() {
+        LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
+        lineChart.setAnimated(false);
+        lineChart.setCreateSymbols(false);
+        lineChart.setAnimated(false);
+        lineChart.setAxisSortingPolicy(LineChart.SortingPolicy.X_AXIS);
+        VBox.setVgrow(lineChart, Priority.ALWAYS);
+        VBox.setVgrow(yAxis, Priority.ALWAYS);
+    }
+
+    public  void drawHistogram() {
+
+        CategoryAxis xAxis    = new CategoryAxis();
+        xAxis.setLabel("Date");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Price");
+
+        BarChart <CategoryAxis,NumberAxis>barChart = new BarChart(xAxis, yAxis);
+        barChart.setAnimated(false);
+
+        VBox.setVgrow(barChart, Priority.ALWAYS);
+        VBox.setVgrow(yAxis, Priority.ALWAYS);
+    }
+
+    public void drawSpline() {
+        LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
+        lineChart.setAnimated(false);
+        lineChart.setCreateSymbols(false);
+        lineChart.setAnimated(false);
+        lineChart.setAxisSortingPolicy(LineChart.SortingPolicy.X_AXIS);
+        VBox.setVgrow(lineChart, Priority.ALWAYS);
+        VBox.setVgrow(yAxis, Priority.ALWAYS);
+    }
+
+    public void drawAreaChart() {
+        LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
+        lineChart.setAnimated(false);
+        lineChart.setCreateSymbols(false);
+        lineChart.setAnimated(false);
+        lineChart.setAxisSortingPolicy(LineChart.SortingPolicy.X_AXIS);
+        VBox.setVgrow(lineChart, Priority.ALWAYS);
+        VBox.setVgrow(yAxis, Priority.ALWAYS);
+    }
+
+    public void getBaseCurrency() {
+        baseCurrency = "USD";
+        StackPane stackPane = new StackPane();
+        ChoiceBox<String> choiceBox=
+                new ChoiceBox<>(FXCollections.observableArrayList("USD", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD"));
+        stackPane.getChildren().add(new VBox(choiceBox));
+        stackPane.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(stackPane);
+        Stage stage=new Stage();
+
+        stage.show();;
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    public void getCounterCurrency() {
+        counterCurrency = "USD";
+        StackPane stackPane = new StackPane();
+        ChoiceBox<String> choiceBox=
+                new ChoiceBox<>(FXCollections.observableArrayList("USD", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD", "CHF", "CNY", "DKK", "EUR", "GBP", "AUD", "CAD"));
+        stackPane.getChildren().add(new VBox(choiceBox));
+        stackPane.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(stackPane);
+        Stage stage=new Stage();
+
+        stage.show();;
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void drawVolumeChart() {
+        candleWidth = (int) 0.05;
+        double candleHeight = 0.05;
+        xAxis.setTickLabelFormatter(getXAxisFormatterForRange(candleWidth));
+        xAxis.setTickMarkVisible(false);
+        yAxis.setTickLabelFormatter(getXAxisFormatterForRange(candleWidth));
+        yAxis.setTickMarkVisible(false);
+
+
+       StackPane stackPane = new StackPane();
+       VBox vBox = new VBox();
+       vBox.getChildren().add(canvas);
+       stackPane.getChildren().add(vBox);
+       stackPane.setAlignment(Pos.CENTER);
+       Scene scene = new Scene(stackPane);
+
+       Stage stage=new Stage();
+       stage.setScene(scene);
+
+       stage.show();;
+    }
+
     private class SizeChangeListener extends DelayedSizeChangeListener {
         SizeChangeListener(BooleanProperty gotFirstSize, ObservableValue<Number> containerWidth,
                            ObservableValue<Number> containerHeight) {
@@ -937,18 +1136,6 @@ public class CandleStickChart extends Region {
         @Override
         public void acceptTrades(List<Trade> trades) {
             liveTradesQueue.addAll(trades);
-        }
-
-        @Contract(pure = true)
-        @Override
-        public @Nullable Node getOrderBook() {
-            return new VBox(new Label("Order Book"),new ListView<OrderBook>());
-        }
-
-        @Contract(pure = true)
-        @Override
-        public @Nullable TelegramClient getTelegramClient() {
-            return null;
         }
 
         @Override

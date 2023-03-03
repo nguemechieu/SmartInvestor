@@ -26,6 +26,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.smartinvestor.smartinvestor;
+
 import static com.smartinvestor.smartinvestor.PopOver.ArrowLocation.*;
 import static java.lang.Double.MAX_VALUE;
 import static javafx.geometry.Pos.CENTER_LEFT;

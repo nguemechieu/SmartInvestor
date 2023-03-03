@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import org.java_websocket.drafts.Draft_6455;
+import org.java_websocket.handshake.ServerHandshake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +32,39 @@ import static java.time.format.DateTimeFormatter.ISO_INSTANT;
 
 public class coinbase extends Exchange {
     coinbase(String url) {
-        super(url);
+        super(new ExchangeWebSocketClient(URI.create(url),new Draft_6455()) {
+            @Override
+            public void onOpen(ServerHandshake handshake) {
+
+
+
+            }
+
+            @Override
+            public void onMessage(String message) {
+
+            }
+
+            @Override
+            public void onClose(int code, String reason, boolean remote) {
+
+            }
+
+            @Override
+            public void streamLiveTrades(TradePair tradePair, LiveTradesConsumer liveTradesConsumer) {
+
+            }
+
+            @Override
+            public void stopStreamLiveTrades(TradePair tradePair) {
+
+            }
+
+            @Override
+            public boolean supportsStreamingTrades(TradePair tradePair) {
+                return false;
+            }
+        });
          // This argument is for creating a WebSocket client for live trading data.
     }
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()

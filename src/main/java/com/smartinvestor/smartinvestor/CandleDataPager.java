@@ -11,7 +11,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Pages new candle data in chronological order to a {@code CandleStickChart} on-demand.
-
+ *
+ * @author Michael Ennen
  */
 public class CandleDataPager {
     private final CandleDataSupplier candleDataSupplier;

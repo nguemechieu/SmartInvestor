@@ -1,17 +1,12 @@
 package com.smartinvestor.smartinvestor;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Locale;
 
 public enum Side {
     BUY,
     SELL;
 
-
-
-    public static Side getSide(@NotNull String type) {
+    public static Side getSide(String type) {
         if (type.equalsIgnoreCase("BUY")) {
             return BUY;
         } else if (type.equalsIgnoreCase("SELL")) {
@@ -21,17 +16,19 @@ public enum Side {
         }
     }
 
-    @Contract(pure = true)
-    public static Side oppositeOf(@NotNull Side side) {
-        return switch (side) {
-            case BUY -> SELL;
-            case SELL -> BUY;
-            default -> throw new IllegalArgumentException("unknown side: " + side);
-        };
+    public static Side oppositeOf(Side side) {
+        switch (side) {
+            case BUY:
+                return SELL;
+            case SELL:
+                return BUY;
+            default:
+                throw new IllegalArgumentException("unknown side: " + side);
+        }
     }
 
     @Override
-    public @NotNull String toString() {
+    public String toString() {
         return name().toLowerCase(Locale.US);
     }
 }

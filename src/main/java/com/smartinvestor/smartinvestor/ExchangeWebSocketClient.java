@@ -3,7 +3,6 @@ package com.smartinvestor.smartinvestor;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.scene.Node;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.slf4j.Logger;
@@ -59,13 +58,5 @@ public abstract class ExchangeWebSocketClient extends WebSocketClient {
         connectionEstablished.set(result);
         webSocketInitializedLatch.countDown();
         return result;
-    }
-
-    public Node getOrderBook(TradePair tradepair) {
-        return liveTradeConsumers.get(tradepair).getOrderBook();
-    }
-
-    public TelegramClient getTelegramClient(TradePair tradepair) {
-        return liveTradeConsumers.get(tradepair).getTelegramClient();
     }
 }

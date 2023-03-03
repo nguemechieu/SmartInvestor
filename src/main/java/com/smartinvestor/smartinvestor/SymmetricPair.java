@@ -1,8 +1,5 @@
 package com.smartinvestor.smartinvestor;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Objects;
 
 /**
@@ -10,14 +7,27 @@ import java.util.Objects;
  * implementation of equals(), returning true if equals() is true on each of the contained
  * objects.
  */
-public record SymmetricPair<F, S>(F first, S second) {
+public class SymmetricPair<F, S> {
+    private final F first;
+    private final S second;
+
     /**
      * Constructor for a Pair.
      *
-     * @param first  the first object in the Pair
+     * @param first the first object in the Pair
      * @param second the second object in the pair
      */
-    public SymmetricPair {
+    public SymmetricPair(F first, S second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public F getFirst() {
+        return first;
+    }
+
+    public S getSecond() {
+        return second;
     }
 
     /**
@@ -27,8 +37,7 @@ public record SymmetricPair<F, S>(F first, S second) {
      * @param b the second object in the pair
      * @return a Pair that is templatized with the types of a and b
      */
-    @Contract(value = "_, _ -> new", pure = true)
-    public static <A, B> @NotNull SymmetricPair<A, B> of(A a, B b) {
+    public static <A, B> SymmetricPair<A, B> of(A a, B b) {
         return new SymmetricPair<>(a, b);
     }
 
@@ -42,10 +51,11 @@ public record SymmetricPair<F, S>(F first, S second) {
      */
     @Override
     public boolean equals(Object object) {
-        if (!(object instanceof SymmetricPair<?, ?> sp)) {
+        if (!(object instanceof SymmetricPair)) {
             return false;
         }
 
+        SymmetricPair<?, ?> sp = (SymmetricPair<?, ?>) object;
         return (Objects.equals(this.first, sp.first) && Objects.equals(this.second, sp.second)) ||
                 (Objects.equals(this.second, sp.first) && Objects.equals(this.first, sp.second));
 
@@ -61,9 +71,8 @@ public record SymmetricPair<F, S>(F first, S second) {
         return (first == null ? 0 : first.hashCode()) ^ (second == null ? 0 : second.hashCode());
     }
 
-    @Contract(pure = true)
     @Override
-    public @NotNull String toString() {
+    public String toString() {
         return "SymmetricPair [" + first + ", " + second + "]";
     }
 

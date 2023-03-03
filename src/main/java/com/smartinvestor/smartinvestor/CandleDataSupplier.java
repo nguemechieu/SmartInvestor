@@ -75,8 +75,5 @@ public abstract class CandleDataSupplier implements Supplier<Future<List<CandleD
     public abstract CompletableFuture<Optional<InProgressCandleData>> fetchCandleDataForInProgressCandle(
             TradePair tradePair, Instant currentCandleStartedAt, long secondsIntoCurrentCandle, int secondsPerCandle);
 
-
     public abstract CompletableFuture<List<Trade>> fetchRecentTradesUntil(TradePair tradePair0, Instant stopAt);
-
-
 }

@@ -17,6 +17,7 @@ public class App extends Application {
     @Override
     public void start(@NotNull Stage stage) throws SQLException, IOException, URISyntaxException, ExecutionException, InterruptedException, TimeoutException {
 
+        Thread.setDefaultUncaughtExceptionHandler((thread, exception) -> Log.error("[" + thread + "]: "+exception));
         new LoginForm(stage).show();
 
     }

@@ -22,7 +22,7 @@ public class CandleStickChartOptions {
         GridPane optionsGrid = new GridPane();
         int numOptions = 0;
         optionsGrid.setVgap(10);
-        optionsGrid.setHgap(20);
+        optionsGrid.setHgap(10);
         for (BooleanProperty optionProperty : List.of(
                 verticalGridLinesVisible, horizontalGridLinesVisible, showVolume, alignOpenClose)) {
             ChartOption newOption = new ChartOption(optionProperty);
@@ -48,8 +48,9 @@ public class CandleStickChartOptions {
             return CandleStickChartOptions.this;
         }
 
+        @Contract(pure = true)
         @Override
-        public String getName() {
+        public @NotNull String getName() {
             return "Vertical Grid Lines";
         }
     };
@@ -95,8 +96,9 @@ public class CandleStickChartOptions {
             return CandleStickChartOptions.this;
         }
 
+        @Contract(pure = true)
         @Override
-        public String getName() {
+        public @NotNull String getName() {
             return "Volume Bars";
         }
     };
@@ -119,8 +121,9 @@ public class CandleStickChartOptions {
             return CandleStickChartOptions.this;
         }
 
+        @Contract(pure = true)
         @Override
-        public String getName() {
+        public @NotNull String getName() {
             return "Align Open/Close";
         }
     };
